@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.enuri</groupId>
 	<artifactId>myweb</artifactId>
-	<name>mmyweb</name>
+	<name>testweb</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
