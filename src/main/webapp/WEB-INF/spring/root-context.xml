@@ -13,12 +13,12 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx">
 	
-	<context:component-scan base-package="com.enuri.mirs" />
+	<context:component-scan base-package="com.enuri.myweb" />
 	
 	<!-- <context:property-placeholder location="/WEB-INF/db.properties"/> -->
 	<bean id="dataSource1" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
-		<property name="jdbcUrl" value="jdbc:mysql://192.168.213.47:3306/mirs?serverTimezone=Asia/Seoul"/>
+		<property name="jdbcUrl" value="jdbc:mysql://192.168.213.51:3306/mirs?serverTimezone=Asia/Seoul"/>
 		<!--  <property name="jdbcUrl" value="jdbc:mysql://14.129.213.47:3306/mirs?serverTimezone=Asia/Seoul"/> --> 
 		<property name="user" value="sops"/>
 		<property name="password" value="dpsnfl01"/>
@@ -32,16 +32,16 @@
 	<!-- Sops DB -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource1" />
-		<property name="configLocation" value="classpath:com/enuri/mirs/conf/mybatis-config.xml"/>
+		<property name="configLocation" value="classpath:com/enuri/myweb/mybatis/mybatis-config.xml"/>
 		<property name="mapperLocations">
 			<list>
-				<value>classpath:com/enuri/mirs/vo/**/*.xml</value>
-			</list
+				<value>classpath:com/enuri/mybatis/**/*.xml</value>
+			</list>
 		</property>
 	</bean>
 	
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource1" />
+		<property name="dataSource" ref="dataSource1"/>
 	</bean>
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory" />
