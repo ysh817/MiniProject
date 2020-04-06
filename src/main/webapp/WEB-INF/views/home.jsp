@@ -60,7 +60,7 @@
       <div class="intro-text">
         <div class="intro-lead-in">Welcome!</div>
         <div class="intro-heading text-uppercase">It's Nice To Meet You</div>
-        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="https://loalhost:8080/login">Login</a>
+        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="/login">Login</a>
       </div>
     </div>
   </header>

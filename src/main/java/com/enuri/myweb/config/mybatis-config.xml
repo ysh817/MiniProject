@@ -6,9 +6,10 @@
 	</settings>
      
 	<typeAliases>
-		<typeAlias alias="UserInfo" type="com.enuri.vo.UserInfo"/>
-		
-		
+	 	<typeAlias alias="UserInfo" type="com.enuri.myweb.vo.UserInfoVo"/>
+	 	<typeAlias alias="MemberGrade" type="com.enuri.myweb.vo.MemberGradeVo"/>
+	 	<typeAlias alias="MemberLog" type="com.enuri.myweb.vo.MemberLogVo"/>
+
 	</typeAliases>
     
 	<!--  java.util.Date 변경 -->
