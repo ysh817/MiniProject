@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="BoardContent">
+	<resultMap type="com.enuri.myweb.vo.board.BoardContent" id="BoardContentMap">
+
+		<result property="title" column="TITLE" />
+		<result property="writer" column="USER_ID" />
+		<result property="content" column="CONTENT" />
+		<result property="regdate" column="REGDATE" />
+		<result property="cnt" column="CNT" />
+
+	</resultMap>
+
+	<!-- <![CDATA[ ]]> -->
+
+	<insert id="insertBoard" parameterType="BoardContent">
+		INSERT INTO BOARD_CONTENT(title, writer, content, regDate)
+		VALUES(#{title},#{writer},#{content},now())
+	</insert>
+	<update id="updateBoard">
+		UPDATE BOARD_CONTENT 
+		SET title=#{title}, content=#{content} 
+		
+	</update>
+	<delete id="deleteBoard">
+		DELETE FROM BOARD_CONTENT 
+		WHERE CNT=#{cnt}
+	</delete>
+	<select id="getBoard" resultType="BoardContent">
+		SELECT * 
+		FROM BOARD_CONTENT 
+		WHERE CNT=#{cnt}
+	</select>
+	<select id="getBoardList" resultType="BoardContent">
+		SELECT * 
+		FROM BOARD_CONTENT 
+		WHERE title LIKE CONCAT('%',#{searchKeyword},'%') 
+		ORDER BY CNT DESC
+	</select>
+
+</mapper>
+	

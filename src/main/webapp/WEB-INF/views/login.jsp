@@ -15,7 +15,7 @@
         <button type="submit" class="login_process">로그인</button>
         <p> <a href = "/join">회원가입</a></p>
         
-        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+        <!-- <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script> -->
         
         
        <!--  <script>

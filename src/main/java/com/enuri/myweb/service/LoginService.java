@@ -8,20 +8,18 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.enuri.myweb.mapper.UserMapper;
-import com.enuri.myweb.vo.UserInfoVo;
+import com.enuri.myweb.vo.userinfo.UserInfo;
 
 
 
 @Service
-public class LoginService extends SqlSessionDaoSupport {
+public class LoginService {
 	//로그인 검사
 	//중복 id, email 검사
 	
 	//setLogin
 	
-	@Autowired
-	UserMapper mapper;
+	
 	
 	
 	public String setLogin(HttpServletRequest request) {
@@ -50,7 +48,7 @@ public class LoginService extends SqlSessionDaoSupport {
 			// id와 pw 둘 중에 하나라도 입력 null
 			return -1;
 		}
-		
+		/*
 		if(UserInfoVo.getUser_id().equals(loginId)) {
 			//입력한 id 가 유저정보에 없음
 			return -1;
@@ -58,7 +56,7 @@ public class LoginService extends SqlSessionDaoSupport {
 		if(UserInfoVo.getUser_pw().equals(loginPw)) {
 			//입력한 pw 가 유저정보에 없음
 			return -1;
-		}
+		}*/
 		//중복로그인?
 		
 		

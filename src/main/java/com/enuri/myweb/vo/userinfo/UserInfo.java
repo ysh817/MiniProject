@@ -1,10 +1,10 @@
-package com.enuri.myweb.vo;
+package com.enuri.myweb.vo.userinfo;
 
-public class UserInfoVo {
+public class UserInfo {
 	
 	private String id;
-	private static String user_id;
-	private static String user_pw;
+	private String user_id;
+	private String user_pw;
 	private String user_name;
 	private String user_email;
 	private String user_gender;
@@ -18,13 +18,13 @@ public class UserInfoVo {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public static  String getUser_id() {
+	public String getUser_id() {
 		return user_id;
 	}
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-	public static String getUser_pw() {
+	public String getUser_pw() {
 		return user_pw;
 	}
 	public void setUser_pw(String user_pw) {

@@ -1,21 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-config.dtd">  
 <configuration>
+	
+	
 	<settings>
 		<setting name="cacheEnabled" value="false" />
 	</settings>
+    
      
 	<typeAliases>
-	 	<typeAlias alias="UserInfo" type="com.enuri.myweb.vo.UserInfoVo"/>
-	 	<typeAlias alias="MemberGrade" type="com.enuri.myweb.vo.MemberGradeVo"/>
-	 	<typeAlias alias="MemberLog" type="com.enuri.myweb.vo.MemberLogVo"/>
+	 	<typeAlias alias="UserInfo" type="com.enuri.myweb.vo.userinfo.UserInfo"/>
+	 	<typeAlias alias="BoardContent" type="com.enuri.myweb.vo.board.BoardContent"/>
+	 	
 
 	</typeAliases>
-    
+  
+
+
+
+ 
 	<!--  java.util.Date 변경 -->
     <typeHandlers>
 		<typeHandler javaType="java.sql.Timestamp" handler="org.apache.ibatis.type.DateTypeHandler"/>
 		<typeHandler javaType="java.sql.Time" handler="org.apache.ibatis.type.DateTypeHandler"/>
 		<typeHandler javaType="java.sql.Date" handler="org.apache.ibatis.type.DateTypeHandler"/>
     </typeHandlers>
+    
+   <!--  <mappers> 
+    <mapper resource="mapper/UserMapper.xml" /> 
+    <mapper resource="mapper/BoardContentMapper.xml" />
+    </mappers>
+ -->
+
+    
+    
 </configuration>

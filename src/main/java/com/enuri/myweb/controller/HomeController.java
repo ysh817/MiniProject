@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.enuri.myweb.vo.UserInfoVo;
+import com.enuri.myweb.vo.userinfo.UserInfo;
 
 /**
  * Handles requests for the application home page.
@@ -18,7 +18,7 @@ import com.enuri.myweb.vo.UserInfoVo;
 @Controller
 public class HomeController {
 	
-	@Resource UserInfoVo userInfoVo;
+	//@Resource UserInfo userInfoVo;
 	
 	
 	/**
@@ -29,29 +29,34 @@ public class HomeController {
 		return "home";
 	}*/
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@GetMapping("/")
 	public String home() {
-		return "index";
+		System.out.println("hommmmmmmm");
+		return "/index";
 	}
 	
 	@GetMapping("/login")
 	public String login() {
-		return "login";
+		System.out.println("looooooooogin");
+		return "/login";
 		
 	}
 	
 	@GetMapping("/join")
 	public String join() {
 		//mapperl.set
-		return "join";
+		return "/join";
 	}
 	
-	//@GetMapping("/board")
+	@GetMapping("/board")
+	public String board_main() {
+		return "/board/main";
+	}
 	
 	
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
 	public String welcome() {
-		return "welcome";
+		return "/welcome";
 	}
 	
 	

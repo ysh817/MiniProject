@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="UserInfo">
+	<resultMap type="com.enuri.myweb.vo.userinfo.UserInfo" id="UserInfoMap">
+	
+		<result property="id" column="ID"/>
+		<result property="user_id" column="USER_ID"/>
+		<result property="user_pw" column="USER_PW"/>
+		<result property="user_name" column="USER_NAME"/>
+		<result property="user_email" column="USER_EMAIL"/>
+		<result property="user_gender" column="USER_GENDER"/>
+		<result property="access_ip" column="ACCESS_IP"/>
+		<result property="crt_dt" column="CRT_DT"/>
+		<result property="user_code" column="USER_CODE"/>
+		<result property="description" column="DESCRIPTION"/>
+
+	</resultMap>
+	
+	<!-- <![CDATA[   ]]>  -->
+	
+	<select id="getAllUserInfo" resultMap="UserInfoMap">
+		SELECT *
+		FROM USER_INFO
+	</select>	
+	
+	<select id="getUserInfo" parameterType="Map" resultMap="UserInfoMap">
+		SELECT *
+		FROM USER_INFO
+		WHERE USER_ID = #{loginId} 
+		AND USER_PASSWORD = #{loginPw}
+	</select>	
+	
+	<!--  insert-param -->
+	<!-- select-result -->
+
+	<insert id="joinUser" parameterType="UserInfo">
+		INSERT INTO USER_INFO (ID, USER_ID, USER_PW , USER_NAME, USER_EMAIL, USER_GENDER, ACCESS_IP, CRT_DT, USER_CODE, DESCRIPTION)
+		VALUES(#id}, #{user_id}, #{user_pw}, #{userPassword},2, #{tableauIndex}, now(), #{useStartDate}, #{useEndDate}, #{userEmail}, #{accessIp})
+	<!-- pw, pw확인 -->
+	
+	</insert>
+	
+	<!-- logout, 비밀번호변경?,  -->
+	
+</mapper>
+	
