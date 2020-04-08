@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 <script>
 	alert('로그인 실패했습니다')	
-	//location.href="/login"
+	location.href="/login"
 </script>

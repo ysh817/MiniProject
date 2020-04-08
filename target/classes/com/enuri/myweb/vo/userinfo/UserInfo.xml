@@ -24,22 +24,33 @@
 		FROM USER_INFO
 	</select>	
 	
-	<select id="getUserInfo" parameterType="Map" resultMap="UserInfoMap">
+	<select id="getUserInfo" parameterType="UserInfo" resultMap="UserInfoMap">
 		SELECT *
 		FROM USER_INFO
-		WHERE USER_ID = #{loginId} 
-		AND USER_PASSWORD = #{loginPw}
+		WHERE USER_ID = #{user_id} 
+		AND USER_PW = #{user_pw}
 	</select>	
+	<select id="getUser" parameterType="UserInfo" resultMap="UserInfoMap">
+		SELECT *
+		FROM USER_INFO
+		WHERE USER_ID = #{user_id} 
+		AND USER_PW = #{user_pw}
+	</select>
 	
 	<!--  insert-param -->
 	<!-- select-result -->
 
-	<insert id="joinUser" parameterType="UserInfo">
+	<insert id="joinUser" parameterType="UserInfo" >
 		INSERT INTO USER_INFO (ID, USER_ID, USER_PW , USER_NAME, USER_EMAIL, USER_GENDER, ACCESS_IP, CRT_DT, USER_CODE, DESCRIPTION)
 		VALUES(#id}, #{user_id}, #{user_pw}, #{userPassword},2, #{tableauIndex}, now(), #{useStartDate}, #{useEndDate}, #{userEmail}, #{accessIp})
 	<!-- pw, pw확인 -->
 	
 	</insert>
+	
+	<!-- <delete id="deleteUser" parameterType="UserInfo">
+		DELETE 
+	
+	</delete> -->
 	
 	<!-- logout, 비밀번호변경?,  -->
 	

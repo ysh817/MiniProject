@@ -26,11 +26,6 @@
 		<typeHandler javaType="java.sql.Date" handler="org.apache.ibatis.type.DateTypeHandler"/>
     </typeHandlers>
     
-   <!--  <mappers> 
-    <mapper resource="mapper/UserMapper.xml" /> 
-    <mapper resource="mapper/BoardContentMapper.xml" />
-    </mappers>
- -->
 
     
     

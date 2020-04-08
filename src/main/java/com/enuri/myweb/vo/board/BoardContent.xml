@@ -23,11 +23,11 @@
 		SET title=#{title}, content=#{content} 
 		
 	</update>
-	<delete id="deleteBoard">
+	<delete id="deleteBoard" parameterType="int">
 		DELETE FROM BOARD_CONTENT 
 		WHERE CNT=#{cnt}
 	</delete>
-	<select id="getBoard" resultType="BoardContent">
+	<select id="readBoard" parameterType="int" resultType="BoardContent">
 		SELECT * 
 		FROM BOARD_CONTENT 
 		WHERE CNT=#{cnt}

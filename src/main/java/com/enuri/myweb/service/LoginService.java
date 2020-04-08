@@ -1,14 +1,21 @@
 package com.enuri.myweb.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.enuri.myweb.util.UserInfoDao;
 import com.enuri.myweb.vo.userinfo.UserInfo;
+
 
 
 
@@ -18,50 +25,53 @@ public class LoginService {
 	//중복 id, email 검사
 	
 	//setLogin
+	@Autowired UserInfoDao userInfoDao;
+	@Autowired SqlSession session;
+
 	
-	
-	
-	
-	public String setLogin(HttpServletRequest request) {
+	//로그인 검사는 jsp에서 
+	//세션 저장 및 mapper
+	/*public UserInfo setLogin(HttpServletRequest request, HttpServletResponse response) {
 		//로그인 저장, 실패
 		String id=request.getParameter("user_id");
 		String pw=request.getParameter("user_pw");
 		
-		if(login_Check(id, pw)<0) {
-			return "loginFail";
-		}
-		//세션 및 비밀번호 암호화 저장
+		System.out.println("id="+ id +" pw= "+ pw);
+		HttpSession session = request.getSession();
+		//세션 저장
 		
-		//UserInfoVo.setUser_pw(sha256Utils.encrypt(pw));
+		//session.setAttribute("id", id);
+
 		
-		
-		
-		return "board";
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("user_id", id);
+		map.put("user_pw", pw);
+		UserInfo userInfo = userInfoDao.getUser(map);
+		//dao에서 인터페이스 구현
+		return userInfo;
+		// id, pw로 한 유저 선택 , 데이터 저장
 	}
-		
+		*/
 		
 
 	
-	public static int login_Check(String loginId, String loginPw) {
-	
-		if(loginId == ""|| loginPw == ""){
-			// id와 pw 둘 중에 하나라도 입력 null
-			return -1;
-		}
-		/*
-		if(UserInfoVo.getUser_id().equals(loginId)) {
-			//입력한 id 가 유저정보에 없음
-			return -1;
-		}
-		if(UserInfoVo.getUser_pw().equals(loginPw)) {
-			//입력한 pw 가 유저정보에 없음
-			return -1;
+	public String loginCheck(UserInfo userInfo, HttpServletRequest request) {
+		//1. loginid, loginpw -> where 절에 넣어서 조회가 되는지 안되는 확인
+		//2. 조회가 된다 -> 그 사용자 정보를 session 사용
+		//3. 조회가 안된다 -> loginfail 페이지
+		//jQuery 
+		
+		UserInfo user = userInfoDao.getUserInfo(userInfo);
+		HttpSession session = request.getSession();
+		/*if(user.getUser_id()==null) {
+			return "loginfail";
 		}*/
-		//중복로그인?
 		
 		
-		return 0;
+		
+		return "/board/main";
 	}
+	
 	
 
 
