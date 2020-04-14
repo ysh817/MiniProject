@@ -3,17 +3,16 @@
 
 <mapper namespace="UserInfo">
 	<resultMap type="com.enuri.myweb.vo.userinfo.UserInfo" id="UserInfoMap">
-	
-		<result property="id" column="ID"/>
+	<!-- 이게 곧 vo -->
 		<result property="user_id" column="USER_ID"/>
 		<result property="user_pw" column="USER_PW"/>
+		<result property="user_pw2" column="USER_PW2"/>
 		<result property="user_name" column="USER_NAME"/>
 		<result property="user_email" column="USER_EMAIL"/>
 		<result property="user_gender" column="USER_GENDER"/>
-		<result property="access_ip" column="ACCESS_IP"/>
 		<result property="crt_dt" column="CRT_DT"/>
 		<result property="user_code" column="USER_CODE"/>
-		<result property="description" column="DESCRIPTION"/>
+		
 
 	</resultMap>
 	
@@ -23,6 +22,12 @@
 		SELECT *
 		FROM USER_INFO
 	</select>	
+	<select id="getAllUserList" resultMap="UserInfoMap">
+		SELECT USER_ID, USER_NAME, USER_EMAIL, CRT_DT,USER_GRADE
+		FROM USER_INFO
+		ORDER BY USER_GRADE
+	</select>	
+	
 	
 	<select id="getUserInfo" parameterType="UserInfo" resultMap="UserInfoMap">
 		SELECT *
@@ -37,15 +42,41 @@
 		AND USER_PW = #{user_pw}
 	</select>
 	
+	<select id="login" parameterType="UserInfo" resultMap="UserInfoMap">
+		SELECT USER_ID, USER_PW
+		FROM USER_INFO
+		WHERE USER_ID = #{user_id} 
+		AND USER_PW = #{user_pw}
+	</select> 
 	<!--  insert-param -->
 	<!-- select-result -->
 
-	<insert id="joinUser" parameterType="UserInfo" >
-		INSERT INTO USER_INFO (ID, USER_ID, USER_PW , USER_NAME, USER_EMAIL, USER_GENDER, ACCESS_IP, CRT_DT, USER_CODE, DESCRIPTION)
-		VALUES(#id}, #{user_id}, #{user_pw}, #{userPassword},2, #{tableauIndex}, now(), #{useStartDate}, #{useEndDate}, #{userEmail}, #{accessIp})
-	<!-- pw, pw확인 -->
+<!-- <insert id="joinUser" parameterType="UserInfo" >
+		INSERT INTO USER_INFO (USER_ID, USER_PW ,USER_PW2, 
+		USER_NAME, USER_EMAIL, USER_GENDER,TO_CHAR(CRT_DT,'YYYY-MM-DD hh:mm'), USER_CODE)
+		
+		VALUES(#{user_id}, #{user_pw},#{user_pw2}, 
+		#{user_name}, #{user_email}, #{user_gender}, 
+		now(),  
+		USER)
+	
 	
 	</insert>
+	-->
+	 <insert id="joinUser" parameterType="UserInfo" >
+		INSERT INTO USER_INFO 
+		( USER_ID, USER_PW ,USER_PW2, 
+		USER_NAME, USER_EMAIL, USER_GENDER,
+		<!-- DATE_FORMAT(TA.USE_START_DATE, '%Y-%m-%d') AS CRT_DT -->
+		CRT_DT, USER_CODE )
+		
+		VALUES
+		( #{user_id}, #{user_pw},#{user_pw2}, 
+		#{user_name}, #{user_email}, #{user_gender},
+		#{crt_dt} ,'user' )
+
+	
+	</insert> 
 	
 	<!-- <delete id="deleteUser" parameterType="UserInfo">
 		DELETE 

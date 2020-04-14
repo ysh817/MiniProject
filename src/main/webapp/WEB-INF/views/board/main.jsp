@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page session="true" %>
+<c:set var='root' value="${pageContext.request.contextPath }/"/>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,12 +17,34 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+<b><a href = "${root }user/logoutSuccess">로그아웃</a></b><b><a href = "${root }">   홈으로</a></b><hr> 
 <!-- body와  foot에  import예정 -->
+
+<h2> 게시판  /board/main</h2>
+<p>세션정보:[ <%=session.getAttribute("LoginUser")%> ]</p>
+<p>[ ${sessionScope.loginUser.user_name } ] 님 안녕하세요</p>
+<p>[ ${sessionScope.loginsession.user_name } ] 님 안녕하세요</p>
+
+<p>[ ${user_name } ] 님 안녕하세요</p>
+
+<c:choose>
+    <c:when test="${not empty sessionScope.loginUser}">
+        <h2>로그인 성공 </h2>
+        이름 : ${sessionScope.loginUser.user_name} 
+        <a href="logout">로그아웃</a>
+    </c:when>
+    <c:otherwise>
+        <p>Test: 세션이 비었음</p>        
+    </c:otherwise>
+</c:choose>
+
+
 <!-- 게시글 리스트 -->
 <div class="container" style="margin-top:100px">
 	<div class="card shadow">
 		<div class="card-body">
-			<h4 class="card-title">${title}</h4>
+			<h4 class="card-title">.</h4>
 			<table class="table table-hover" id='board_list'>
 				<thead>
 					<tr>
@@ -29,7 +55,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var='obj' items="${content}">
+					<c:forEach var='obj' items="${contentlist}">
 					<tr>
 						<td class="text-center d-none d-md-table-cell">${obj.cnt}</td>
 						<td><a href='/board/read'>${obj.title}</a></td>
@@ -80,7 +106,7 @@
 			</div>
 			
 			<div class="text-right">
-				<a href="${root }board/write?board_info_idx=${board_info_idx}" class="btn btn-primary">글쓰기</a>
+				<a href="/board/write" class="btn btn-primary">글쓰기</a>
 			</div>
 			
 		</div>

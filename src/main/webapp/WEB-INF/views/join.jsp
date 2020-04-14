@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -51,31 +54,35 @@
             <hr/>
             <!-- 본문 들어가는 부분 -->
                 
+ <!-- action="javascript:alert( 'success!' ); -->
  
- 
-            <form class="form-horizontal" role="form" method="post" action="javascript:alert( 'success!' );">
+            <form:form modelAttribute="joinform" class="form-horizontal"  method="post" action="/join">
                 <div class="form-group" id="divId">
                     <label for="inputId" class="col-lg-2 control-label">아이디</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control onlyAlphabetAndNumber" id="id" data-rule-required="true" placeholder="30자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="30">
+                        <input type="text" class="form-control onlyAlphabetAndNumber" id="user_id" name="user_id" data-rule-required="true" placeholder="30자이내의 알파벳, 숫자만 입력 가능합니다." maxlength="30">
+                    	<form:errors path="user_id"/>
                     </div>
                 </div>
                 <div class="form-group" id="divPassword">
                     <label for="inputPassword" class="col-lg-2 control-label">패스워드</label>
                     <div class="col-lg-10">
-                        <input type="password" class="form-control" id="password" name="excludeHangul" data-rule-required="true" placeholder="패스워드" maxlength="30">
+                        <input type="password" class="form-control" id="user_pw" name="user_pw" data-rule-required="true" placeholder="패스워드" maxlength="30">
+                   		<form:errors path="user_pw"/>
                     </div>
                 </div>
                 <div class="form-group" id="divPasswordCheck">
                     <label for="inputPasswordCheck" class="col-lg-2 control-label">패스워드 확인</label>
                     <div class="col-lg-10">
-                        <input type="password" class="form-control" id="passwordCheck" data-rule-required="true" placeholder="패스워드 확인" maxlength="30">
+                        <input type="password" class="form-control" id="user_pw2" name="user_pw2" data-rule-required="true" placeholder="패스워드 확인" maxlength="30">
+                   		<form:errors path="user_pw2"/>
                     </div>
                 </div>
                 <div class="form-group" id="divName">
                     <label for="inputName" class="col-lg-2 control-label">이름</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control onlyHangul" id="name" data-rule-required="true" placeholder="한글만 입력 가능합니다." maxlength="15">
+                        <input type="text" class="form-control onlyHangul" id="user_name" name="user_name" data-rule-required="true" placeholder="이름" maxlength="15">
+                   		<form:errors path="user_name"/>
                     </div>
                 </div>
 
@@ -83,13 +90,14 @@
                 <div class="form-group" id="divEmail">
                     <label for="inputEmail" class="col-lg-2 control-label">이메일</label>
                     <div class="col-lg-10">
-                        <input type="email" class="form-control" id="email" data-rule-required="true" placeholder="이메일" maxlength="40">
+                        <input type="email" class="form-control" id="user_email" name="user_email" data-rule-required="true" placeholder="이메일" maxlength="40">
+                    	<form:errors path="user_email" style="color:red"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputPhoneNumber" class="col-lg-2 control-label">성별</label>
                     <div class="col-lg-10">
-                        <select class="form-control" id="gender">
+                        <select class="form-control" id="user_gender" name="user_gender">
                             <option value="M">남</option>
                             <option value="F">여</option>
                         </select>
@@ -98,10 +106,47 @@
 
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
-                        <button type="submit" class="btn btn-primary">Sign in</button>
+                        <button type="submit" class="btn btn-primary">회원가입</button>
                     </div>
                 </div>
-            </form>
+            </form:form>
+            
+            <script>
+            /* $(document).ready(function(){
+                
+                $("#btn-primary").click(function(){
+                	var obj = new Object();            	        
+
+                    obj.type = 'join';
+                    obj.id = $('#user_id').val();
+                    obj.password = $('#user_pw').val();
+                    obj.password2= $('#user_pw2').val();
+                    obj.name= $('#user_name').val();
+                    obj.email= $('#user_email').val();
+                    
+                 
+                    if(obj.id == '' || obj.password == '' ||obj.password2==''
+                    		|| obj.name==''||obj.email==''){
+                    	alert('아이디 혹은 비밀번호를 입력하세요');
+                    	 //str은 json에 변수명을 가지고 #은 아이디 찾는것 attr은 에트류뷰트의 
+                        //placeholder를 찾는것
+                        alert($("#" + str).attr("placeholder") + "를 입력해주세요.");
+                        //이벤트 발생한 id or pw 에 커서 올려줌(#은 id)
+                        $("#" + str).focus();
+                        return;
+                            
+                            
+                    }
+       
+                });
+            });
+             */
+            
+            
+            
+            </script>
+            
+            
 
   <hr/>
             <!-- 푸터 들어가는 부분 -->
