@@ -12,10 +12,10 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+		<context:component-scan base-package="com.enuri.myweb" />
 	<!-- MySQL dataSource -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
+		<property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
 		<property name="jdbcUrl" value="jdbc:mysql://192.168.213.51:3306/miniprj?serverTimezone=Asia/Seoul"/>
 		<property name="user" value="sops"/>
 		<property name="password" value="dpsnfl01"/>

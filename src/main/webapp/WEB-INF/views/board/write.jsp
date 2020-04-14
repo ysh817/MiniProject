@@ -23,7 +23,7 @@
 		<div class="col-sm-6">
 			<div class="card shadow">
 				<div class="card-body">
-					<form:form action='${root }board/write_pro' method='post' modelAttribute="writeContentBean" enctype="multipart/form-data">
+					<form:form action="/write" method='post' modelAttribute="writeContentform" enctype="multipart/form-data">
 						<form:hidden path="content_board_idx"/>
 						<div class="form-group">
 							<form:label path="content_subject">제목</form:label>

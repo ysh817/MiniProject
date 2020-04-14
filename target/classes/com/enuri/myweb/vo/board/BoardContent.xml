@@ -13,11 +13,32 @@
 	</resultMap>
 
 	<!-- <![CDATA[ ]]> -->
+<!-- 	
+	
+	<select id="mainBoardList" parameterType="HashMap" resultType="HashMap">
+		SELECT * 
+		FROM BOARD_CONTENT 
+		WHERE title LIKE CONCAT('%',#{searchKeyword},'%') 
+		ORDER BY CNT DESC
+	</select>
+	
+	
+	 -->
+	 
+
+	 
 
 	<insert id="insertBoard" parameterType="BoardContent">
-		INSERT INTO BOARD_CONTENT(title, writer, content, regDate)
-		VALUES(#{title},#{writer},#{content},now())
+		INSERT INTO BOARD_CONTENT
+		( CNT, TITLE,USER_ID,CONTENT, REGDATE )
+		VALUES
+		( #{cnt}, #{title},#{writer},#{content},#{regdate} )
+		<!-- SELECT case COUNT(*) when 0 then 1 else max(CNT)+1 
+		,#{title},#{writer},#{content},#{regdate} FROM BOARD_CONTENT 
+ -->
+
 	</insert>
+	
 	<update id="updateBoard">
 		UPDATE BOARD_CONTENT 
 		SET title=#{title}, content=#{content} 
@@ -33,11 +54,17 @@
 		WHERE CNT=#{cnt}
 	</select>
 	<select id="getBoardList" resultType="BoardContent">
-		SELECT * 
+		SELECT CNT, TITLE, USER_ID, REGDATE 
 		FROM BOARD_CONTENT 
-		WHERE title LIKE CONCAT('%',#{searchKeyword},'%') 
+		<!-- WHERE title LIKE CONCAT('%',#{searchKeyword},'%')  -->
 		ORDER BY CNT DESC
 	</select>
+	<select id="getBoardCount" resultType="int">
+		SELECT COUNT(*) CNT
+		FROM BOARD_CONTENT 
+		<!-- WHERE title LIKE CONCAT('%',#{searchKeyword},'%')  -->
+	</select>
+	
 
 </mapper>
 	

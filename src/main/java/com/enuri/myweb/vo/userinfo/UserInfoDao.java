@@ -1,17 +1,10 @@
-package com.enuri.myweb.util;
+package com.enuri.myweb.vo.userinfo;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import com.enuri.myweb.vo.userinfo.UserInfo;
-
 
 @Repository
 public class UserInfoDao {
@@ -34,9 +27,8 @@ public class UserInfoDao {
 		
 		*/
 	
-	public List<UserInfo> getAllUserInfo() {
-		
-		return null;
+	public List<UserInfo> getAllUserInfo() {		
+		return sqlSessionFactory.selectList("UserInfo.getAllUserInfo");
 	}
 
 	public UserInfo getUserInfo(UserInfo userInfo) {
@@ -46,15 +38,26 @@ public class UserInfoDao {
 
 	public UserInfo getUser(UserInfo userInfo) {
 		// TODO Auto-generated method stub
-		System.out.println("dd");
-		
+	
 		return sqlSessionFactory.selectOne("UserInfo.getUser", userInfo);
 	}
 
+	public UserInfo login(UserInfo userInfo) {
+		// TODO Auto-generated method stub
+	
+		return sqlSessionFactory.selectOne("UserInfo.login", userInfo);
+	}
+
 	public void joinUser(UserInfo userinfo) {
-		
+		sqlSessionFactory.insert("UserInfo.joinUser", userinfo);
+		System.out.println("join");
 		
 	}
+	public List<UserInfo> getAllUserList(UserInfo userinfo) {
+		//admin이 회원정보를 관리하기 위해 유저목록 페이지에 갖고 올 리스트
+		return sqlSessionFactory.selectList("UserInfo.getAllUserList");		
+	}
+
 	
 	
 	

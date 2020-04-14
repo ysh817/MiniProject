@@ -14,6 +14,8 @@
 <a href = "/board">게시판</a>
 <hr>
 <a href = "/join">회원가입</a>
+<hr>
+<a href = "/user/user_list">회원관리</a>
 
 
 </body>

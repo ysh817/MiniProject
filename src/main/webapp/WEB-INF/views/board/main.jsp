@@ -13,7 +13,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+<a href = "./logout">로그아웃</a><a href = "./">   홈으로</a><hr> 
 <!-- body와  foot에  import예정 -->
+
+<h1> 게시판 </h1>
+
 <!-- 게시글 리스트 -->
 <div class="container" style="margin-top:100px">
 	<div class="card shadow">
@@ -80,7 +85,7 @@
 			</div>
 			
 			<div class="text-right">
-				<a href="${root }board/write?board_info_idx=${board_info_idx}" class="btn btn-primary">글쓰기</a>
+				<a href="/board/write?board_info_idx=${cnt}" class="btn btn-primary">글쓰기</a>
 			</div>
 			
 		</div>
