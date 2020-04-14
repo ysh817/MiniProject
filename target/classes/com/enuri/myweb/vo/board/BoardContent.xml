@@ -39,6 +39,7 @@
 
 	</insert>
 	
+<<<<<<< HEAD
 
 	<!-- cnt를 +1 해주기 위한 쿼리
 		 칼럼갯수를 갖고와서 +1 //0은 존재하지 않게
@@ -49,6 +50,8 @@
 	
 	
 	
+=======
+>>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
 	<update id="updateBoard">
 		UPDATE BOARD_CONTENT 
 		SET title=#{title}, content=#{content} 
@@ -69,18 +72,24 @@
 		<!-- WHERE title LIKE CONCAT('%',#{searchKeyword},'%')  -->
 		ORDER BY CNT DESC
 	</select>
+<<<<<<< HEAD
 	
+=======
+>>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
 	<select id="getBoardCount" resultType="int">
 		SELECT COUNT(*) CNT
 		FROM BOARD_CONTENT 
 		<!-- WHERE title LIKE CONCAT('%',#{searchKeyword},'%')  -->
 	</select>
+<<<<<<< HEAD
 		<!-- cnt를 +1 해주기 위한 쿼리
 		 칼럼갯수를 갖고와서 +1 //0은 존재하지 않게
 		  -->
 	
 	
 	
+=======
+>>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
 	
 
 </mapper>

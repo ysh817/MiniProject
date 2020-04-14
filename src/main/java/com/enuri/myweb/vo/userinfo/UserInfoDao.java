@@ -51,7 +51,11 @@ public class UserInfoDao {
 
 	public void joinUser(UserInfo userinfo) {
 		sqlSessionFactory.insert("UserInfo.joinUser", userinfo);
+<<<<<<< HEAD:src/main/java/com/enuri/myweb/vo/userinfo/UserInfoDao.java
 		System.out.println("DB에 회원정보 저장완료");//
+=======
+		System.out.println("join");
+>>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf:src/main/java/com/enuri/myweb/vo/userinfo/UserInfoDao.java
 		
 	}
 	public List<UserInfo> getAllUserList(UserInfo userinfo) {

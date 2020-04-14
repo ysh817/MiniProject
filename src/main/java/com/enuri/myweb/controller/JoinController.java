@@ -17,7 +17,11 @@ public class JoinController {
 	
 	@GetMapping("/join")
 	public String join() {
+<<<<<<< HEAD
 		System.out.println("C-회원가입창 이동");	//
+=======
+		System.out.println("회원가입창 이동");	
+>>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
 		return "/join";
 	}
 	
@@ -26,15 +30,26 @@ public class JoinController {
 		joinservice.userJoin(userInfo);
 		//joinservice.joinValidator(userInfo,model);
 
+<<<<<<< HEAD
+=======
+		System.out.println("회원가입 입구");
+
+>>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
 		return "/joinSuccess";
 		
 	}
 	
+<<<<<<< HEAD
 	//회원가입 시 유효성체크 X
 	
 	@GetMapping("/joinFail_Test")
 	public String jointest() {
 		System.out.println("회원가입창 이동2");	
+=======
+	@GetMapping("/joinFail_Test")
+	public String jointest() {
+		System.out.println("회원가입창 이동");	
+>>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
 		return "/join";
 	}
 	

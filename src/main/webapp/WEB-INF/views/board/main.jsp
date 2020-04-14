@@ -18,6 +18,7 @@
 </head>
 <body>
 
+<<<<<<< HEAD
 <b><a href = "${root }user/logoutSuccess">로그아웃</a></b><b><a href = "${root }">   홈으로</a></b><hr> 
 <!-- body와  foot에  import예정 -->
 
@@ -39,6 +40,12 @@
     </c:otherwise>
 </c:choose>
 
+=======
+<a href = "./logout">로그아웃</a><a href = "./">   홈으로</a><hr> 
+<!-- body와  foot에  import예정 -->
+
+<h1> 게시판 </h1>
+>>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
 
 <!-- 게시글 리스트 -->
 <div class="container" style="margin-top:100px">
@@ -106,7 +113,11 @@
 			</div>
 			
 			<div class="text-right">
+<<<<<<< HEAD
 				<a href="/board/write" class="btn btn-primary">글쓰기</a>
+=======
+				<a href="/board/write?board_info_idx=${cnt}" class="btn btn-primary">글쓰기</a>
+>>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
 			</div>
 			
 		</div>

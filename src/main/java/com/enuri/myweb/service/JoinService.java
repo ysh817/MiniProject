@@ -25,7 +25,11 @@ public class JoinService {
 		userInfoDao.joinUser(userInfo);
 	}
 	
+<<<<<<< HEAD
 	//-----------------------------------------
+=======
+	
+>>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
 	public String joinValidator(UserInfo userInfo,Model model) {
 		//오류갯수 반환
 		int error=0;

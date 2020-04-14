@@ -9,6 +9,7 @@
         <title>로그인</title>
     </head>
     <body>
+<<<<<<< HEAD
 <h2>로그인</h2><br>
 
 					<form:form action="/login" method='post' modelAttribute="LoginUserInfo">
@@ -29,5 +30,17 @@
 					</form:form>
 
 
+=======
+        <h2>로그인</h2>
+        <form action="/login" method="post">
+	        <input type = "text" id = "user_id" name="user_id" placeholder="아이디"><br>
+	        <input type = "password" id = "user_pw" name = "user_pw"placeholder="비밀번호"><br>
+	        <button type="submit" class="login_process">로그인</button>
+        </form>
+        <p> <a href = "/join">회원가입</a></p>
+        
+        <!-- <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script> -->
+
+>>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
     </body>
 </html>

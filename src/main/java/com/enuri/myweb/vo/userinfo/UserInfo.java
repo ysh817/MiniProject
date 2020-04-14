@@ -1,6 +1,7 @@
 package com.enuri.myweb.vo.userinfo;
 
 
+<<<<<<< HEAD
 
 import javax.validation.constraints.NotEmpty;
 
@@ -8,6 +9,17 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 
+=======
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
+>>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
 
 
 public class UserInfo {
@@ -37,6 +49,7 @@ public class UserInfo {
 	
 	private String crt_dt;
 	private String user_code;
+<<<<<<< HEAD
 	private boolean userlogin;
 
 	
@@ -46,6 +59,17 @@ public class UserInfo {
 
 	}
 	
+=======
+	
+	private String now;
+	
+	/*public UserInfo() {
+		
+		setCrt_dt(now);
+
+	}
+	*/
+>>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
 	public String getUser_id() {
 		return user_id;
 	}
@@ -96,6 +120,7 @@ public class UserInfo {
 		this.user_code = user_code;
 	}
 
+<<<<<<< HEAD
 	public boolean isUserlogin() {
 		return userlogin;
 	}
@@ -105,6 +130,10 @@ public class UserInfo {
 	}
 	
 	
+=======
+
+
+>>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
 
 
 

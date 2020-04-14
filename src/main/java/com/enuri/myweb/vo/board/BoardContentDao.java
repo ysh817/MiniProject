@@ -30,13 +30,18 @@ public class BoardContentDao {
 	}
 	
 	public int getBoardCount() {
+<<<<<<< HEAD
 		//System.out.println("getBoardCOunt()");
+=======
+		System.out.println("getBoardCOunt()");
+>>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
 		//return sqlSessionFactory.selectOne("BoardContent.getBoardCount");
 		int c = sqlSessionFactory.selectOne("BoardContent.getBoardCount");
 		System.out.println(c);
 		return c;
 		
 	}
+<<<<<<< HEAD
 	public String getBoardWrier() {
 		//세션정보를 통해 가지고
 		
@@ -44,5 +49,7 @@ public class BoardContentDao {
 		return "";
 	}
 	
+=======
+>>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
 
 }

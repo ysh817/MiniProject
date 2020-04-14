@@ -25,6 +25,7 @@
 	
 	<!-- 인터셉터, 프로퍼티 등록  -->
 	<interceptors>
+<<<<<<< HEAD
 		<!-- <interceptor>
 			<mapping path="/**"/>
 			<beans:bean class='com.enuri.myweb.interceptor.LoginInterceptor'/>
@@ -46,6 +47,11 @@
 			<mapping path="/join"/>
 			<!-- <mapping path="/login"/> -->
 			<beans:bean class='com.enuri.myweb.interceptor.JoinInterceptor'/>
+=======
+		<interceptor>
+			<mapping path="/**"/>
+			<beans:bean class='com.enuri.myweb.interceptor.LoginInterceptor'/>
+>>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
 		</interceptor>
 	</interceptors>
 	

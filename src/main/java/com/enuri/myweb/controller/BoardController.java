@@ -2,10 +2,13 @@ package com.enuri.myweb.controller;
 
 import java.util.List;
 
+<<<<<<< HEAD
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+=======
+>>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,20 +17,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.enuri.myweb.service.BoardService;
+<<<<<<< HEAD
 import com.enuri.myweb.service.LoginService;
 import com.enuri.myweb.vo.board.BoardContent;
 import com.enuri.myweb.vo.userinfo.UserInfo;
+=======
+>>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
 
 @Controller
 @RequestMapping("/board")
 public class BoardController {
 	
+<<<<<<< HEAD
 	@Autowired
 	LoginService loginService;
 	@Autowired BoardService boardService;
 	@Resource(name="loginsession")
 	@Lazy
 	UserInfo loginsession;
+=======
+>>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
 	
 	@GetMapping("/main")
 	public String main(Model model,UserInfo userInfo) {
