@@ -36,38 +36,22 @@ public class LoginService {
 		// 1. loginid, loginpw -> where 절에 넣어서 조회가 되는지 안되는 확인 //setLogin
 		// 2. 조회가 된다 -> 그 사용자 정보를 session 사용
 		// 3. 조회가 안된다 -> loginfail 페이지
-		// jQuery
 		
 		ModelAndView mv = new ModelAndView();
 		String id = request.getParameter("user_id");
 		String pw = request.getParameter("user_pw");
 		System.out.println("id=" + id + " pw=" + pw + "로 로그인을 시도하였습니다.");
-
-		/*UserInfo login=userInfoDao.getUserInfo(userInfo);
-		System.out.println("유저이름:"+login.getUser_name());
-		//로긴 메소드만들어서 거기에 로그인 회원정보 담아야함 (0)
-*/		
+//---------------------------------------------------
 		// 로그인 성공여부를 위해 유저 조회
 		UserInfo ch = userInfoDao.login(userInfo); //ch가 null이면 아이디 없음
 		
 		if (ch==null) {	
-			
-			//session.setAttribute("LoginUser", null); 
 			System.out.println("로그인 실패");
-			//System.out.println("세션정보:"+session); //세션정보 없음
-			/*mv.setViewName("/loginFail");*/
 			return false;
 		}
-		//HttpSession session = request.getSession();
-		System.out.println("유저아이디 존재");
-		//userInfo=setloginUser(userInfo,request);
-		//session.setAttribute("LoginUser", userInfo); //추후 수정
-		//System.out.println("세션정보:"+session);
-		
+		System.out.println("유저아이디 존재");		
 		return true;
-		//mv.setViewName("redirect:/board/main");
-		
-		//return mv;
+
 	}
 	
 	public UserInfo setloginUser(UserInfo userInfo, HttpServletRequest request)

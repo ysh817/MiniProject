@@ -2,8 +2,6 @@
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix='spring' uri="http://www.springframework.org/tags" %>
-
 <c:set var='root' value="${pageContext.request.contextPath }/"/>
 
 
@@ -23,36 +21,6 @@
         <!-- Respond.js 으로 IE8 에서 반응형 기능을 활성화하세요 (https://github.com/scottjehl/Respond) -->
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     </head>
-    <script>
-	function checkUserIdExist(){
-		
-		var user_id = $("#user_id").val()
-		
-		if(user_id.length == 0){
-			alert('아이디를 입력하세요')
-			return
-		}
-		
-		$.ajax({
-			url : '${root}checkUserIdExist/' + user_id,
-			type : 'get',
-			dataType : 'json',
-			success : function(result){
-				if(result== 0){
-					alert('사용할 수 있는 아이디입니다')
-					//$("#userIdExist").val('true')
-				} else {
-					alert('사용할 수 없는 아이디 입니다')
-					//$("#userIdExist").val('false')
-				}
-			}
-		})
-	}
-	
-	/*  function resetUserIdExist(){
-		$("#userIdExist").val('false')
-	}  */
-</script>
     <body>
         <div class="container"><!-- 좌우측의 공간 확보 -->
             <!-- 헤더 들어가는 부분 -->
@@ -89,89 +57,25 @@
                 
  <!-- action="javascript:alert( 'success!' ); -->
  
- 					<form:form action="/join" method='post' modelAttribute="joinform">
-
-						<div class="form-group">
-							<form:label path="user_id">아이디</form:label>
-							<div class="input-group">
-								<form:input path="user_id" class='form-control'/>
-								<div class="input-group-append">
-									<button type="button" class="btn btn-primary" onclick='checkUserIdExist()'>중복확인</button>
-								</div>
-							</div>
-							<form:errors path="user_id" style='color:red'/>
-						</div>
-						<div class="form-group">
-							<form:label path="user_pw">비밀번호</form:label>
-							<form:password path="user_pw" class='form-control'/>
-							<form:errors path='user_pw' style='color:red'/>
-						</div>
-						<div class="form-group">
-							<form:label path="user_pw2">비밀번호 확인</form:label>
-							<form:password path="user_pw2" class='form-control'/>
-							<form:errors path='user_pw2' style='color:red'/>
-						</div>
-						<div class="form-group">
-							<form:label path="user_name">이름</form:label>
-							<form:input path="user_name" class='form-control'/>
-							<form:errors path="user_name" style='color:red'/>
-						</div>
-						<div class="form-group" id="divEmail">
-                        	<form:label path="user_email">이메일</form:label>
-							<form:input path="user_email" class='form-control'/>
-                    		<form:errors path="user_email" style="color:red"/>
-                    	</div>
-                        <div class="form-group">
-                    <form:label path="user_gender">성별</form:label>
-                   
-                        <select class="form-control" id="user_gender" name="user_gender">
-                            <option value="M">남</option>
-                            <option value="F">여</option>
-                        </select>
-                    
-                </div>
-						<div class="form-group">
-							<div class="text-right">
-								<form:button class='btn btn-primary'>회원가입</form:button>
-							</div>
-						</div>
-					</form:form>
- 
- 
-          <%--   <form:form modelAttribute="joinform" class="form-horizontal"  method="post" action="/join">
+            <form:form modelAttribute="joinform" class="form-horizontal"  method="post" action="/join">
                 <div class="form-group" id="divId">
                     <label for="inputId" class="col-lg-2 control-label">아이디</label>
                     <div class="col-lg-10">
                         <input type="text" class="form-control onlyAlphabetAndNumber" id="user_id" name="user_id" data-rule-required="true" placeholder="30자이내의 알파벳, 숫자만 입력 가능합니다." maxlength="30">
-                    	<!-- <form:errors path="user_id"/> -->
-                    	<spring:hasBindErrors name="userinfo">
-							<c:if test="${errors.hasFieldErrors('user_id') }">
-								${errors.getFieldError('user_id').defaultMessage }<br/>
-							</c:if>
-						</spring:hasBindErrors>
+                    	<!--<form:errors path="user_id"/> -->
                     </div>
                 </div>
                 <div class="form-group" id="divPassword">
                     <label for="inputPassword" class="col-lg-2 control-label">패스워드</label>
                     <div class="col-lg-10">
                         <input type="password" class="form-control" id="user_pw" name="user_pw" data-rule-required="true" placeholder="패스워드" maxlength="30">
-                   		<!-- <form:errors path="user_pw"/> -->
-                   		<spring:hasBindErrors name="userinfo">
-							<c:if test="${errors.hasFieldErrors('user_pw') }">
-								${errors.getFieldError('user_pw').defaultMessage }<br/>
-							</c:if>
-						</spring:hasBindErrors>
+                   		<form:errors path="user_pw"/>
                     </div>
                 </div>
                 <div class="form-group" id="divPasswordCheck">
                     <label for="inputPasswordCheck" class="col-lg-2 control-label">패스워드 확인</label>
                     <div class="col-lg-10">
                         <input type="password" class="form-control" id="user_pw2" name="user_pw2" data-rule-required="true" placeholder="패스워드 확인" maxlength="30">
-                   		<spring:hasBindErrors name="userinfo">
-							<c:if test="${errors.hasFieldErrors('user_pw2') }">
-								${errors.getFieldError('user_pw2').defaultMessage }<br/>
-							</c:if>
-						</spring:hasBindErrors>
                    		<form:errors path="user_pw2"/>
                     </div>
                 </div>
@@ -179,13 +83,7 @@
                     <label for="inputName" class="col-lg-2 control-label">이름</label>
                     <div class="col-lg-10">
                         <input type="text" class="form-control onlyHangul" id="user_name" name="user_name" data-rule-required="true" placeholder="이름" maxlength="15">
-                   		<spring:hasBindErrors name="userinfo">
-							<c:if test="${errors.hasFieldErrors('user_name') }">
-								${errors.getFieldError('user_name').defaultMessage }<br/>
-							</c:if>
-						</spring:hasBindErrors>
                    		<form:errors path="user_name"/>
-                   		
                     </div>
                 </div>
 
@@ -194,11 +92,6 @@
                     <label for="inputEmail" class="col-lg-2 control-label">이메일</label>
                     <div class="col-lg-10">
                         <input type="email" class="form-control" id="user_email" name="user_email" data-rule-required="true" placeholder="이메일" maxlength="40">
-                    	<spring:hasBindErrors name="userinfo">
-							<c:if test="${errors.hasFieldErrors('user_email') }">
-								${errors.getFieldError('user_email').defaultMessage }<br/>
-							</c:if>
-						</spring:hasBindErrors>
                     	<form:errors path="user_email" style="color:red"/>
                     </div>
                 </div>
@@ -218,10 +111,44 @@
                     </div>
                 </div>
             </form:form>
-    --%>
-   
-    
             
+            <script>
+            /* $(document).ready(function(){
+                
+                $("#btn-primary").click(function(){
+                	var obj = new Object();            	        
+
+                    obj.type = 'join';
+                    obj.id = $('#user_id').val();
+                    obj.password = $('#user_pw').val();
+                    obj.password2= $('#user_pw2').val();
+                    obj.name= $('#user_name').val();
+                    obj.email= $('#user_email').val();
+                    
+                 
+                    if(obj.id == '' || obj.password == '' ||obj.password2==''
+                    		|| obj.name==''||obj.email==''){
+                    	alert('아이디 혹은 비밀번호를 입력하세요');
+                    	 //str은 json에 변수명을 가지고 #은 아이디 찾는것 attr은 에트류뷰트의 
+                        //placeholder를 찾는것
+                        alert($("#" + str).attr("placeholder") + "를 입력해주세요.");
+                        //이벤트 발생한 id or pw 에 커서 올려줌(#은 id)
+                        $("#" + str).focus();
+                        return;
+                            
+                            
+                    }
+       
+                });
+            });
+             */
+            
+            
+            
+            </script>
+            
+            
+
   <hr/>
             <!-- 푸터 들어가는 부분 -->
             

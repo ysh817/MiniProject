@@ -1,7 +1,6 @@
 package com.enuri.myweb.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 import javax.validation.Valid;
 
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+
 
 import com.enuri.myweb.service.JoinService;
 import com.enuri.myweb.vo.userinfo.UserInfo;

@@ -45,6 +45,7 @@ public class UserInfoDao {
 
 	public UserInfo login(UserInfo userInfo) {
 		// TODO Auto-generated method stub
+		System.out.println("d여기서-db오류");
 	
 		return sqlSessionFactory.selectOne("UserInfo.login", userInfo);
 	}

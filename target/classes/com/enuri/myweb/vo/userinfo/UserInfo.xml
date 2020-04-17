@@ -27,7 +27,7 @@
 		FROM USER_INFO
 		ORDER BY USER_CODE
 	</select>	
-	
+	<!-- 사용자관리 -->
 	
 	<select id="getUserInfo" parameterType="UserInfo" resultMap="UserInfoMap">
 		SELECT *
@@ -35,12 +35,6 @@
 		WHERE USER_ID = #{user_id} 
 		AND USER_PW = #{user_pw}
 	</select>	
-	<select id="getUser" parameterType="UserInfo" resultMap="UserInfoMap">
-		SELECT *
-		FROM USER_INFO
-		WHERE USER_ID = #{user_id} 
-		AND USER_PW = #{user_pw}
-	</select>
 	
 	<select id="login" parameterType="UserInfo" resultMap="UserInfoMap">
 		SELECT USER_ID, USER_PW
@@ -48,6 +42,16 @@
 		WHERE USER_ID = #{user_id} 
 		AND USER_PW = #{user_pw}
 	</select> 
+	
+	<!-- 로그인 -->
+	<select id="getUser" parameterType="UserInfo" resultMap="UserInfoMap">
+		SELECT *
+		FROM USER_INFO
+		WHERE USER_ID = #{user_id} 
+		AND USER_PW = #{user_pw}
+	</select>
+	
+	
 	<!--  insert-param -->
 	<!-- select-result -->
 
@@ -77,6 +81,7 @@
 
 	
 	</insert> 
+	<!-- 회원가입 -->
 	 <update id="modifyUser" parameterType="UserInfo" >
 		UPDATE USER_INFO 
 		SET USER_NAME=#{user_name}, 
@@ -96,11 +101,11 @@
 		WHERE USER_ID=#{user_id}
 	</update>
 
-	<select id="getIDExist" parameterType="String" resultMap="int">
+	<!-- <select id="getIDExist" parameterType="String" resultMap="int">
 		SELECT COUNT(*)
 		FROM USER_INFO
 		WHERE USER_ID = #{user_id} 
-	</select>
+	</select> -->
 	
 	<!-- <delete id="deleteUser" parameterType="UserInfo">
 		DELETE 
