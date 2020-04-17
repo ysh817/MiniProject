@@ -2,9 +2,11 @@ package com.enuri.myweb.service;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.enuri.myweb.vo.userinfo.UserInfo;
 import com.enuri.myweb.vo.userinfo.UserInfoDao;
@@ -14,7 +16,9 @@ public class AdminService {
 	
 	@Autowired
 	private UserInfoDao dao;
-	
+	@Resource(name="loginsession")
+	@Lazy UserInfo loginsession;
+	/*
 	public List<UserInfo> getuserList(UserInfo userInfo) {
 		
 		ModelAndView mv = new ModelAndView();
@@ -24,9 +28,11 @@ public class AdminService {
 		mv.addObject("userList", list);
 
 		return list;
+	}*/
+	
+	public List<UserInfo> getAllUser(){		
+		return dao.getAllUserList();
 	}
-	
-	
 	
 	
 	public boolean userGradeCheck(UserInfo userInfo) {
@@ -37,7 +43,11 @@ public class AdminService {
 		}
 		return true;
 	}
-	
-	
+	public void updateaAdminUserInfo(UserInfo userInfo) {
+		dao.updateaAminUserInfo(userInfo);
+	}
+	public UserInfo getModifyUserInfo(String userId) {
+		return dao.getAdminModifyUserInfo(userId);
+	}
 
 }

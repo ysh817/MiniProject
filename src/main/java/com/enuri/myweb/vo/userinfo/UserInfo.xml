@@ -23,9 +23,9 @@
 		FROM USER_INFO
 	</select>	
 	<select id="getAllUserList" resultMap="UserInfoMap">
-		SELECT USER_ID, USER_NAME, USER_EMAIL, CRT_DT,USER_GRADE
+		SELECT *
 		FROM USER_INFO
-		ORDER BY USER_GRADE
+		ORDER BY USER_CODE
 	</select>	
 	
 	
@@ -77,6 +77,30 @@
 
 	
 	</insert> 
+	 <update id="modifyUser" parameterType="UserInfo" >
+		UPDATE USER_INFO 
+		SET USER_NAME=#{user_name}, 
+		USER_PW=#{user_pw},USER_PW2=#{user_pw2} 
+		WHERE USER_ID=#{user_id}
+	</update>
+	
+	<select id="getAdminModifyUserInfo" parameterType="String" resultMap="UserInfoMap">
+		SELECT *
+		FROM USER_INFO
+		WHERE USER_ID = #{user_id} 
+	</select>
+	  <update id="adminModifyUser" parameterType="UserInfo" >
+		UPDATE USER_INFO 
+		SET USER_NAME=#{user_name}, 
+		USER_PW=#{user_pw},USER_PW2=#{user_pw}	
+		WHERE USER_ID=#{user_id}
+	</update>
+
+	<select id="getIDExist" parameterType="String" resultMap="int">
+		SELECT COUNT(*)
+		FROM USER_INFO
+		WHERE USER_ID = #{user_id} 
+	</select>
 	
 	<!-- <delete id="deleteUser" parameterType="UserInfo">
 		DELETE 

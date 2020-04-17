@@ -25,37 +25,38 @@
 	
 	<!-- 인터셉터, 프로퍼티 등록  -->
 	<interceptors>
-<<<<<<< HEAD
 		<!-- <interceptor>
 			<mapping path="/**"/>
 			<beans:bean class='com.enuri.myweb.interceptor.LoginInterceptor'/>
 		</interceptor>
 		-->
 		<interceptor>
-			<mapping path="/board"/>
-			<mapping path="/user/**"/>
-			<mapping path="/admin/**"/>
-			<!-- <mapping path="/login"/> -->
-			<beans:bean class='com.enuri.myweb.interceptor.LoginInterceptor'/>
+			<mapping path="/board/*"/>
+			<mapping path="/user/*"/>
+			<mapping path="/admin/*"/>
+			<mapping path="/logout"/>
+			<beans:bean class='com.enuri.myweb.interceptor.LoginInterceptor'/><!-- 로그인 안했을때 (완료) -->
 		</interceptor>
 		
 		<interceptor>
-			<mapping path="/**"/>
-			<beans:bean class='com.enuri.myweb.interceptor.MenuInterceptor'/>
+			<mapping path="/admin/*"/>
+			<mapping path="/user/*"/>
+			<beans:bean class='com.enuri.myweb.interceptor.MenuInterceptor'/><!-- admin일때와 일반user menu와 board권한 -->
 		</interceptor>
 		<interceptor>
-			<mapping path="/join"/>
-			<!-- <mapping path="/login"/> -->
-			<beans:bean class='com.enuri.myweb.interceptor.JoinInterceptor'/>
-=======
+			<mapping path="/board/modify"/>
+			<mapping path="/board/delete"/>
+			<beans:bean class='com.enuri.myweb.interceptor.BoardMDInterceptor'/><!-- admin일때와 일반user menu와 board권한 -->
+		</interceptor>
+		
 		<interceptor>
-			<mapping path="/**"/>
-			<beans:bean class='com.enuri.myweb.interceptor.LoginInterceptor'/>
->>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
+			<mapping path="/admin/*"/>
+			<!-- <mapping path="/login"/> -->
+			<beans:bean class='com.enuri.myweb.interceptor.Adminterceptor'/>
 		</interceptor>
 	</interceptors>
 	
-	<!-- MessageSource를 등록한다 -->
+	<!-- MessageSource - 프로퍼티를 위한 -->
 	<beans:bean class='org.springframework.context.support.ReloadableResourceBundleMessageSource' id='messageSource'>
 		<beans:property name="basenames">
 			<beans:list>
@@ -64,7 +65,7 @@
 		</beans:property>
 	</beans:bean>
 	
-	<!-- Message 접근을 위한 접근자 등록 -->
+	<!-- Message 접근을 위한 접근자 등록-프로퍼티 -->
 	<beans:bean class='org.springframework.context.support.MessageSourceAccessor'>
 		<beans:constructor-arg ref='messageSource'/>
 	</beans:bean>

@@ -1,11 +1,20 @@
 package com.enuri.myweb.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.enuri.myweb.service.JoinService;
 import com.enuri.myweb.vo.userinfo.UserInfo;
@@ -15,41 +24,69 @@ public class JoinController {
 	@Autowired JoinService joinservice;
 	
 	
-	@GetMapping("/join")
+/*	@GetMapping("/join")
 	public String join() {
-<<<<<<< HEAD
 		System.out.println("C-회원가입창 이동");	//
-=======
-		System.out.println("회원가입창 이동");	
->>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
+
 		return "/join";
 	}
-	
+	*/
+	@GetMapping("/join")
+	public String join(@ModelAttribute("joinform")UserInfo userInfo) {
+		System.out.println("C-회원가입창 이동");	//
+
+		return "/join";
+	}
 	@PostMapping("/join")
-	public String join( @ModelAttribute("joinform")UserInfo userInfo) {	
+	public String join(@Valid @ModelAttribute("joinform")UserInfo userInfo, Model model, BindingResult result) {	
+		//유효성체크
+		if(result.hasErrors()) {//true 면 오류있음. 다시 회원가입창으로
+			System.out.println("다시 회원가입");
+			return "redirect:/join";
+		}
 		joinservice.userJoin(userInfo);
 		//joinservice.joinValidator(userInfo,model);
-
-<<<<<<< HEAD
-=======
-		System.out.println("회원가입 입구");
-
->>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
+		System.out.println("ㄻㄴㄹㄴㄹㄹ이");
 		return "/joinSuccess";
 		
 	}
-	
-<<<<<<< HEAD
+	/*@PostMapping("/join")
+	public String join(@Valid @ModelAttribute("joinform")UserInfo userInfo, Model model,BindingResult result) {	
+		//유효성체크
+		//List list=new ArrayList();
+		
+		if(result.hasErrors()) {//true 면 오류있음
+			
+		}
+		if(joinservice.joinValidator(userInfo, model)>0) {
+			model.addAttribute("error");
+			return "/joinFail";
+		}
+		else {
+			joinservice.userJoin(userInfo);
+			model.addAttribute("no_error");
+			return "/joinSuccess";
+		}
+		
+		//joinservice.joinValidator(userInfo,model);
+		
+		
+		
+	}*/
+	@ResponseBody
+	@PostMapping("/checkUserIdExist")
+	public int idCheck(UserInfo userInfo, @RequestParam("user_id")String user_id ) {
+		System.out.println("유효성체크를 위한 아이디"+user_id);
+		//0이면 아이디중복없음
+		return joinservice.checkuserIdExist(user_id);
+	}
+
 	//회원가입 시 유효성체크 X
 	
 	@GetMapping("/joinFail_Test")
 	public String jointest() {
 		System.out.println("회원가입창 이동2");	
-=======
-	@GetMapping("/joinFail_Test")
-	public String jointest() {
-		System.out.println("회원가입창 이동");	
->>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
+
 		return "/join";
 	}
 	

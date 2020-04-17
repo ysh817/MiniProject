@@ -17,35 +17,24 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-<<<<<<< HEAD
-<b><a href = "${root }user/logoutSuccess">로그아웃</a></b><b><a href = "${root }">   홈으로</a></b><hr> 
-<!-- body와  foot에  import예정 -->
-
-<h2> 게시판  /board/main</h2>
-<p>세션정보:[ <%=session.getAttribute("LoginUser")%> ]</p>
-<p>[ ${sessionScope.loginUser.user_name } ] 님 안녕하세요</p>
-<p>[ ${sessionScope.loginsession.user_name } ] 님 안녕하세요</p>
-
-<p>[ ${user_name } ] 님 안녕하세요</p>
-
+<nav>
 <c:choose>
-    <c:when test="${not empty sessionScope.loginUser}">
-        <h2>로그인 성공 </h2>
-        이름 : ${sessionScope.loginUser.user_name} 
-        <a href="logout">로그아웃</a>
+    <c:when test="${not empty sessionScope.loginsession}">
+        [ ${user_name } ] 님 환영합니다 &emsp;<br>
+        <b><a href = "${root }">홈으로</a></b>&emsp;|&emsp;
+        <b><a href = "${root }user/modify_enter">회원정보수정</a></b>&emsp;|&emsp;
+        <b><a href = "${root }user/logoutSuccess">로그아웃</a></b>
     </c:when>
     <c:otherwise>
-        <p>Test: 세션이 비었음</p>        
+    	로그인 하세요&emsp;<br>
+    	<b><a href = "${root}login">로그인</a></b>&nbsp;|&nbsp;<b><a href = "${root }">홈으로</a></b>      
     </c:otherwise>
 </c:choose>
-
-=======
-<a href = "./logout">로그아웃</a><a href = "./">   홈으로</a><hr> 
+ 
 <!-- body와  foot에  import예정 -->
-
-<h1> 게시판 </h1>
->>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
+</nav>
+<hr>
+<h3> 게시판  /board/main</h3>
 
 <!-- 게시글 리스트 -->
 <div class="container" style="margin-top:100px">
@@ -59,15 +48,18 @@
 						<th class="w-50">제목</th>
 						<th class="text-center d-none d-md-table-cell">작성자</th>
 						<th class="text-center d-none d-md-table-cell">작성날짜</th>
+						<th class="text-center d-none d-md-table-cell">조회수</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var='obj' items="${contentlist}">
 					<tr>
 						<td class="text-center d-none d-md-table-cell">${obj.cnt}</td>
-						<td><a href='/board/read'>${obj.title}</a></td>
-						<td class="text-center d-none d-md-table-cell">${obj.writer}</td>
+						<td><a href='/board/read?content_cnt=${obj.cnt}'>${obj.title}</a></td>
+						<td class="text-center d-none d-md-table-cell">${obj.user_id}</td>
 						<td class="text-center d-none d-md-table-cell">${obj.regdate}</td>
+						<td class="text-center d-none d-md-table-cell">${obj.hit}</td>
+			
 						
 					</tr>
 					</c:forEach>
@@ -113,11 +105,9 @@
 			</div>
 			
 			<div class="text-right">
-<<<<<<< HEAD
+
 				<a href="/board/write" class="btn btn-primary">글쓰기</a>
-=======
-				<a href="/board/write?board_info_idx=${cnt}" class="btn btn-primary">글쓰기</a>
->>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
+
 			</div>
 			
 		</div>

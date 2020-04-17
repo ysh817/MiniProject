@@ -13,5 +13,10 @@ public class ErrorController {
 		
 		return "/error/error_nologin";
 	}
+	
+	@GetMapping("/error_noAccess")
+	public String noAccess() {
+		return "/error/error_noAccess";
+	}
 
 }

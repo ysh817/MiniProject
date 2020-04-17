@@ -23,14 +23,13 @@
 
 <h2> 게시판 /board </h2>
 <p>세션정보:[ <%=session.getAttribute("LoginUser")%> ]</p>
-<p>[ ${sessionScope.loginUser.user_name } ] 님 안녕하세요</p>
-<p>[ ${sessionScope.loginsession.user_name } ] 님 안녕하세요</p>
-<p>[ ${user_name } ] 님 안녕하세요</p>
+<p>[ ${sessionScope.loginsession} ] 님 환영합니다</p>
+<p>[ ${sessionScope.loginsession.getUser_name()} ] 님 안녕하세요</p>
 
 <c:choose>
-    <c:when test="${not empty sessionScope.loginUser}">
+    <c:when test="${not empty sessionScope.loginsession}"><!-- 항상 null이 아니라서 수정해야함 -->
         <h2>로그인 성공 </h2>
-        이름 : ${sessionScope.loginUser.user_name} 
+        이름 : ${sessionScope.loginsession.user_name} <br>
         <a href="logout">로그아웃</a>
     </c:when>
     <c:otherwise>

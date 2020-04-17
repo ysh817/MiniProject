@@ -1,15 +1,12 @@
 package com.enuri.myweb.vo.userinfo;
 
 
-<<<<<<< HEAD
-
 import javax.validation.constraints.NotEmpty;
 
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 
-=======
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -19,13 +16,13 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
->>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
+
 
 
 public class UserInfo {
 	
-	@Size(max=20, message="아이디는 20자 미만")
-	@Pattern(regexp = "[a-zA-Z0-9]*", message="알파벳과 숫자만 허용")
+	//@Size(max=20, message="아이디는 20자 미만")
+	//@Pattern(regexp = "[a-zA-Z0-9]*", message="알파벳과 숫자만 허용")
 	@NotEmpty(message="아이디를 입력하세요")
 	private String user_id;
 	
@@ -39,9 +36,9 @@ public class UserInfo {
 	@NotEmpty(message="이름을 입력하세요")
 	private String user_name;
 	
-	@Pattern(regexp="^[_0-9a-zA-Z-]+@[0-9a-zA-Z]+(.[_0-9a-zA-Z-]+)*$"
-			,message="이메일의 형식이 아닙니다" )
-	@NotEmpty(message="이메일을 입력하세요")
+	//@Pattern(regexp="^[_0-9a-zA-Z-]+@[0-9a-zA-Z]+(.[_0-9a-zA-Z-]+)*$"
+			//,message="이메일의 형식이 아닙니다" )
+	//@NotEmpty(message="이메일을 입력하세요")
 	private String user_email;
 	
 	private String user_gender;
@@ -49,7 +46,7 @@ public class UserInfo {
 	
 	private String crt_dt;
 	private String user_code;
-<<<<<<< HEAD
+
 	private boolean userlogin;
 
 	
@@ -58,18 +55,8 @@ public class UserInfo {
 		this.setUserlogin(false);
 
 	}
-	
-=======
-	
-	private String now;
-	
-	/*public UserInfo() {
-		
-		setCrt_dt(now);
 
-	}
-	*/
->>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
+
 	public String getUser_id() {
 		return user_id;
 	}
@@ -120,7 +107,7 @@ public class UserInfo {
 		this.user_code = user_code;
 	}
 
-<<<<<<< HEAD
+
 	public boolean isUserlogin() {
 		return userlogin;
 	}
@@ -130,10 +117,7 @@ public class UserInfo {
 	}
 	
 	
-=======
 
-
->>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
 
 
 

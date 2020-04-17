@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title> 게시글 수정 </title>
+<title> 회원정보 수정 </title>
 <!-- Bootstrap CDN -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -26,34 +26,33 @@
 		<div class="col-sm-6">
 			<div class="card shadow">
 				<div class="card-body">
-					<form:form  method="post" modelAttribute="modifyContent">
+					<form:form  method="post" modelAttribute="adminModifyUser">
 						<div class="form-group">
-							<input type="hidden" name="cnt" value="${modify.cnt}">
-							<label for="board_writer_name">작성자</label>
-							<input type="text" id="user_id" name="user_id" class="form-control" value="${modify.user_id}" readonly/>
+							<label for="user_id">ID</label>
+							<input type="text" id="user_id" name="user_id" class="form-control" value="${usermodify.user_id}" disabled="disabled"/>
 						</div>
 						<div class="form-group">
-							<label for="board_date">작성날짜</label>
-							<input type="text" id="regdate" name="regdate" class="form-control" value="${modify.regdate}" readonly/>
+							<label for="user_name">이름</label>
+							<input type="text" id="user_name" name="user_name" class="form-control" value="${usermodify.user_name}"/>
 						</div>
 						<div class="form-group">
-							<label for="title">제목</label>
-							<input type="text" id="title" name="title" class="form-control" value="${modify.title}"/>
+							<label for="user_pw">비밀번호</label>
+							<input type="text" id="user_pw" name="user_pw" class="form-control" value="${usermodify.user_pw}"/>
 						</div>
 						<div class="form-group">
-							<label for="content">내용</label>
-							<textarea id="content" name="content" class="form-control" rows="10" style="resize:none">${modify.content}</textarea>
+							<label for="user_code">계정</label>
+							<input type="text" id="user_code" name="user_code" class="form-control" value="${usermodify.user_code}"/>
 						</div>
-<!--						<div class="form-group">
- 							<label for="board_file">첨부 이미지</label>
-							<img src="${root }image/logo.png" width="100%"/>	
-							<input type="file" name="board_file" id="board_file" class="form-control" accept="image/*"/>					
-						</div> -->
+
 						<div class="form-group">
+						<input type="hidden" name="user_gender" value="${usermodify.user_gender}">
+						<input type="hidden" name="user_email" value="${usermodify.user_email}">
+						<input type="hidden" name="crt_dt" value="${usermodify.crt_dt}">
+						<input type="hidden" name="user_pw2" value="${usermodify.user_pw2}">
+						
 							<div class="text-right">
-								<input type="hidden" name="hit" value="${modify.hit}">
 								<button type="submit" class="btn btn-primary">수정완료</button>
-								<a href="${root }board/read?content_cnt=${modify.cnt}" class="btn btn-info">취소</a>
+								<a href="${root }admin/user_list" class="btn btn-info">취소</a>
 							</div>
 						</div>
 					</form:form>

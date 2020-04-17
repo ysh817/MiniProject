@@ -46,7 +46,7 @@ public class test extends AbstractApplicationContextTest{
 			System.out.println("Dd");
 		}*/
 	
-<<<<<<< HEAD
+
 		/*BoardContent board = new BoardContent();
 =======
 		BoardContent board = new BoardContent();
@@ -81,26 +81,7 @@ public class test extends AbstractApplicationContextTest{
 		
 		//userInfo = getUserInfo
 	
-=======
-		
-		
-		
-	//getall ==null일때 cnt=0
-	//
-		
-	}
-	public int cntMethod(BoardContent board) {
-		
-		System.out.println("cntMethod");
-		int c = dao.getBoardCount();
-		int cnt=board.getCnt();	
-		if(c==0) {
-			return 0;
-		}
-		else {
-		return ++cnt;
-		}
->>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
+
 		
 	}
 	

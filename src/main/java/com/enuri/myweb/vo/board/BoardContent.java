@@ -3,10 +3,11 @@ package com.enuri.myweb.vo.board;
 public class BoardContent {
 	
 	private String title;
-	private String writer;
+	private String user_id;
 	private String content;
 	private String regdate;
 	private int cnt;
+	private int hit;
 	
 	public String getTitle() {
 		return title;
@@ -14,11 +15,12 @@ public class BoardContent {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getWriter() {
-		return writer;
+	
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 	public String getContent() {
 		return content;
@@ -37,6 +39,12 @@ public class BoardContent {
 	}
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
+	}
+	public int getHit() {
+		return hit;
+	}
+	public void setHit(int hit) {
+		this.hit = hit;
 	}
 	
 	

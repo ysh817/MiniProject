@@ -2,86 +2,112 @@ package com.enuri.myweb.controller;
 
 import java.util.List;
 
-<<<<<<< HEAD
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
-=======
->>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.enuri.myweb.service.BoardService;
-<<<<<<< HEAD
+
 import com.enuri.myweb.service.LoginService;
 import com.enuri.myweb.vo.board.BoardContent;
 import com.enuri.myweb.vo.userinfo.UserInfo;
-=======
->>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
+
 
 @Controller
 @RequestMapping("/board")
 public class BoardController {
 	
-<<<<<<< HEAD
-	@Autowired
-	LoginService loginService;
+
 	@Autowired BoardService boardService;
+	
 	@Resource(name="loginsession")
-	@Lazy
-	UserInfo loginsession;
-=======
->>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
+	@Lazy UserInfo loginsession;
+
 	
 	@GetMapping("/main")
 	public String main(Model model,UserInfo userInfo) {
+				
+		String name=loginsession.getUser_name();
+		System.out.println("C-board에서 유저 이름:"+name); //0
+		model.addAttribute("user_name", name); // ~님 안녕하세요 메시지
 		
-		System.out.println("목록  ");
-		
-		String name=userInfo.getUser_name();
-		System.out.println(name);
 		List<BoardContent> list = boardService.getBoardList();
 		model.addAttribute("contentlist", list);
-		//String name=userInfo.getUser_name();
-		System.out.println("2"+name);
-		model.addAttribute("user_name", name);
+		//글 List 전달
+
+
 		return "/board/main";
 	}
 	
 	@GetMapping("/read")
-	public String read(Model model) {
-	
-		//<UserInfo> list = BoardService.getAllBoardList();
-		//리스트로 유저리스트 담음
-		//model.addAttribute("list", list);
+	public String read(@RequestParam("content_cnt")int content_cnt,Model model,BoardContent boardcontent) {
+		
+		BoardContent readContent = boardService.readBoardContent(content_cnt);
+		boardService.updateHit(content_cnt);
+		model.addAttribute("read", readContent);
+
 		return "/board/read";
 	}
 	
 	@GetMapping("/write")
-	public String write(@ModelAttribute("writeContent")BoardContent boardContent ) {
+	public String write() {
+		System.out.println("C-게시글작성 페이지 이동");
 		return "/board/write";
 	}
 	@PostMapping("/write")
-	public String writing(@ModelAttribute("writeContent")BoardContent boardContent) {
-		//boardService.writeContent(boardContent);
+	public String write(@ModelAttribute("writeContent")BoardContent boardContent ,Model model) {
+		System.out.println("C-게시글 작성");
+		System.out.println(boardContent.getTitle());
+		System.out.println(boardService.maxCntPlus());
+		
+		boardService.writeBoard(boardContent);
+		model.addAttribute("cnt", boardContent.getCnt());
+
 		return "/board/writeSuccess";
 	}
 	
-	
 	@GetMapping("/modify")
-	public String modify() {
+	public String modify(@RequestParam("content_cnt")int content_cnt
+						,Model model, BoardContent boardContent) {
+		BoardContent modifyContent = boardService.readBoardContent(content_cnt);
+		model.addAttribute("modify", modifyContent);
+		
+		System.out.println("새로 작성한 제목:"+modifyContent.getTitle());
+		
 		return "/board/modify";
 	}
+	@PostMapping("/modify")
+	public String modify(@ModelAttribute("modifyContent")BoardContent boardContent) {
+		System.out.println("C-게시글 수정");
+		System.out.println(boardContent.getTitle());
+
+		boardService.modifyBoardContent(boardContent);
+		//return "/board/modifySuccess;
+		return "redirect:/board/read?content_cnt="+boardContent.getCnt();
+
+	}
+		
+
 	
 	@GetMapping("/delete")
-	public String delete() {
+	public String delete(@RequestParam("content_cnt")int content_cnt) {
+		
+		boardService.deleteBoardContent(content_cnt);	
 		return "/board/delete";
 	}
+	
+	
+	
 	
 	
 }

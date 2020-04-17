@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var='root' value="${pageContext.request.contextPath }/"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,17 +42,25 @@
 
 </nav>
 
-
 <hr>
 <h1> Test</h1>
 <hr>
-<a href = "/login">로그인</a> <br/>
+<c:choose>
+    <c:when test="${loginsession.isUserlogin()==true}">
+        [ ${loginsession.user_name } ] 님 페이지 입니다. &emsp;<br>
+        <a href = "${root }user/logoutSuccess">로그아웃</a>&emsp;|&emsp;
+		<a href = "/board/main">게시판</a>&emsp;|&emsp;
+		<a href = "${root}user/modify_enter">회원정보수정</a>
+    </c:when>
+    <c:otherwise>
+    	<p>로그인 하세요</p>
+   		<a href = "${root}login">로그인</a>&emsp;|&emsp;
+   		<a href = "/join">회원가입</a>
+    </c:otherwise>
+</c:choose>
 <hr>
-<a href = "/board">게시판</a>
-<hr>
-<a href = "/join">회원가입</a>
-<hr>
-<a href = "/user/user_list">회원관리</a>
+<p>테스트중</p>
+<a href = "/admin/user_list">회원관리</a>
 
 
 </body>

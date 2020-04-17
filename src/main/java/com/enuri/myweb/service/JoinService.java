@@ -4,6 +4,7 @@ package com.enuri.myweb.service;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -19,20 +20,22 @@ public class JoinService {
 	
 
 	public void userJoin(UserInfo userInfo) {
+		
+		
 		userInfo.setCrt_dt(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 		// 현재시간 셋팅
 		
 		userInfoDao.joinUser(userInfo);
 	}
 	
-<<<<<<< HEAD
+
 	//-----------------------------------------
-=======
-	
->>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
-	public String joinValidator(UserInfo userInfo,Model model) {
+
+	public int joinValidator(UserInfo userInfo,Model model) {
 		//오류갯수 반환
 		int error=0;
+		//Map으로
+		
 		if(userInfo.getUser_id().contains("")) {
 			model.addAttribute("error_user_id", "아이디를 입력하세요");
 			error++;	
@@ -57,12 +60,9 @@ public class JoinService {
 			model.addAttribute("error_user_pw_match","비밀번호가 일치하지 않습니다");
 			error++;
 		}
+		return error;
 		
 		
-		if(error>0) {
-			return "/joinFail_Test";
-		}	
-		return "/joinSuccess";
 	}
 	
 	public ModelAndView chk(UserInfo userInfo) {
@@ -114,5 +114,10 @@ public class JoinService {
 		
 		return mv;
 	}
+	
+public int checkuserIdExist(String user_id) {
+		
+		return userInfoDao.getIDExist(user_id);
+}
 
 }

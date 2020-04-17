@@ -5,10 +5,11 @@
 	<resultMap type="com.enuri.myweb.vo.board.BoardContent" id="BoardContentMap">
 
 		<result property="title" column="TITLE" />
-		<result property="writer" column="USER_ID" />
+		<result property="user_id" column="USER_ID" />
 		<result property="content" column="CONTENT" />
 		<result property="regdate" column="REGDATE" />
 		<result property="cnt" column="CNT" />
+		<result property="hit" column="HIT" /> <!-- 조회수 -->
 
 	</resultMap>
 
@@ -26,71 +27,87 @@
 	 -->
 	 
 
-	 
-
+	
 	<insert id="insertBoard" parameterType="BoardContent">
 		INSERT INTO BOARD_CONTENT
-		( CNT, TITLE,USER_ID,CONTENT, REGDATE )
+		( TITLE, USER_ID,CONTENT,REGDATE,CNT,HIT )
 		VALUES
-		( #{cnt}, #{title},#{writer},#{content},#{regdate} )
+		( #{title},#{user_id},#{content},#{regdate},#{cnt},#{hit})
 		<!-- SELECT case COUNT(*) when 0 then 1 else max(CNT)+1 
 		,#{title},#{writer},#{content},#{regdate} FROM BOARD_CONTENT 
  -->
 
 	</insert>
 	
-<<<<<<< HEAD
+
 
 	<!-- cnt를 +1 해주기 위한 쿼리
 		 칼럼갯수를 갖고와서 +1 //0은 존재하지 않게
 		  -->
+	<select id="getContentWriter" resultType="String">
+	<!-- 글 번호로 해당하는 유저 정보 가지고옴 1-->
+		SELECT USER_ID
+		FROM BOARD_CONTENT 
+		WHERE CNT=#{cnt}
+	</select>
+	
+	<select id="getContentUserInfo" resultType="BoardContent">
+	<!-- 글쓴 유저의 정보2 -->
+		SELECT USER_ID,USER_PW,USER_NAME,USER_EMAIL,USER_GENDER
+		FROM BOARD_CONTENT A, USER_INFO B
+		WHERE USER_ID=#{user_id}
+	</select>
 	
 	
-	
-	
-	
-	
-=======
->>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
-	<update id="updateBoard">
+
+	<update id="updateBoard" parameterType="BoardContent" ><!-- 수정 -->
 		UPDATE BOARD_CONTENT 
-		SET title=#{title}, content=#{content} 
+		SET TITLE=#{title}, CONTENT=#{content} 
+		WHERE CNT=#{cnt}
 		
 	</update>
-	<delete id="deleteBoard" parameterType="int">
+	<delete id="deleteBoard" parameterType="int" >
 		DELETE FROM BOARD_CONTENT 
 		WHERE CNT=#{cnt}
 	</delete>
+	
 	<select id="readBoard" parameterType="int" resultType="BoardContent">
 		SELECT * 
 		FROM BOARD_CONTENT 
 		WHERE CNT=#{cnt}
 	</select>
+	
 	<select id="getBoardList" resultType="BoardContent">
-		SELECT CNT, TITLE, USER_ID, REGDATE 
+		SELECT CNT, TITLE, USER_ID, REGDATE, HIT 
 		FROM BOARD_CONTENT 
 		<!-- WHERE title LIKE CONCAT('%',#{searchKeyword},'%')  -->
 		ORDER BY CNT DESC
 	</select>
-<<<<<<< HEAD
-	
-=======
->>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
+
 	<select id="getBoardCount" resultType="int">
 		SELECT COUNT(*) CNT
 		FROM BOARD_CONTENT 
 		<!-- WHERE title LIKE CONCAT('%',#{searchKeyword},'%')  -->
 	</select>
-<<<<<<< HEAD
+
 		<!-- cnt를 +1 해주기 위한 쿼리
 		 칼럼갯수를 갖고와서 +1 //0은 존재하지 않게
 		  -->
-	
-	
-	
-=======
->>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
-	
+	<select id="getMaxCnt"  resultType="Integer">
+		SELECT IFNULL(MAX(CNT),0) AS CNT
+		FROM BOARD_CONTENT 
+	</select>
+	<select id="checkEqualCnt"  parameterType="int" resultType="int">
+		SELECT COUNT(*)CNT
+		FROM BOARD_CONTENT 
+		WHERE CNT=#{cnt}
+	</select>
+	<update id="updateHits" parameterType="BoardContent" ><!-- 수정 -->
+		UPDATE BOARD_CONTENT 
+		SET HIT=HIT+1 
+		WHERE CNT=#{cnt}	
+	</update>
+
 
 </mapper>
 	

@@ -21,35 +21,53 @@ public class BoardContentDao {
 	public void insertBoard(BoardContent boardContent) {
 		//글 쓰기
 		sqlSessionFactory.insert("BoardContent.insertBoard", boardContent);
-		System.out.println("글쓰기");
+		
+		System.out.println("DB에 글쓰기 저장 완료");
 		
 	}
 
-	public int updateBoard(BoardContent boardcontet) {
-		return 0;
-	}
-	
+
 	public int getBoardCount() {
-<<<<<<< HEAD
-		//System.out.println("getBoardCOunt()");
-=======
+
 		System.out.println("getBoardCOunt()");
->>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
+
 		//return sqlSessionFactory.selectOne("BoardContent.getBoardCount");
 		int c = sqlSessionFactory.selectOne("BoardContent.getBoardCount");
 		System.out.println(c);
 		return c;
 		
 	}
-<<<<<<< HEAD
+
 	public String getBoardWrier() {
-		//세션정보를 통해 가지고
-		
-		
+		//user용 - 글작성 유저의 정보 조회	
 		return "";
 	}
+	public BoardContent readContent(int cnt){
+		//작성한 게시글 보기 - 한 행
+		return sqlSessionFactory.selectOne("BoardContent.readBoard", cnt);
+		
+	}
 	
-=======
->>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf
+	public void updateContent(BoardContent boardcontet) {
+		//게시글 수정		
+		sqlSessionFactory.update("BoardContent.updateBoard",boardcontet);
+	}
+	public void deleteContent(int cnt) {
+		//게시글 삭제
+		sqlSessionFactory.delete("BoardContent.deleteBoard", cnt);
+		System.out.println("게시글 DB삭제 완료");
+	}
+	public Integer getMaxCnt() {
+		return sqlSessionFactory.selectOne("BoardContent.getMaxCnt");
+	}
+	public int checkEqualCnt(int cnt) {
+		return sqlSessionFactory.selectOne("BoardContent.checkEqualCnt",cnt);
+	}
+	public void updateHits(int cnt) {
+		//조회수 증가
+		sqlSessionFactory.update("BoardContent.updateHits", cnt);
+	}
+
+	
 
 }

@@ -51,16 +51,32 @@ public class UserInfoDao {
 
 	public void joinUser(UserInfo userinfo) {
 		sqlSessionFactory.insert("UserInfo.joinUser", userinfo);
-<<<<<<< HEAD:src/main/java/com/enuri/myweb/vo/userinfo/UserInfoDao.java
+
 		System.out.println("DB에 회원정보 저장완료");//
-=======
-		System.out.println("join");
->>>>>>> af431f1ab9f3057a36f88acc2856b7db07db42bf:src/main/java/com/enuri/myweb/vo/userinfo/UserInfoDao.java
 		
 	}
-	public List<UserInfo> getAllUserList(UserInfo userinfo) {
+	public List<UserInfo> getAllUserList() {
 		//admin이 회원정보를 관리하기 위해 유저목록 페이지에 갖고 올 리스트
 		return sqlSessionFactory.selectList("UserInfo.getAllUserList");		
+	}
+	public void updateUserInfo(UserInfo userinfo) {
+		//user/user_modify
+		sqlSessionFactory.update("UserInfo.modifyUser", userinfo);
+		System.out.println("DB에 회원정보 수정완료");
+	}
+	public void updateaAminUserInfo(UserInfo userinfo) {
+		sqlSessionFactory.update("UserInfo.adminModifyUser", userinfo);
+		System.out.println("DAOOOO"+userinfo.getUser_id());
+		System.out.println("DB에 admin회원정보 수정완료");
+	}
+	public UserInfo getAdminModifyUserInfo(String userId) {
+		//admin 사용자관리 페이지 -특정 유저 조회/수정
+		System.out.println("DB에 admin회원정보 수정을 위한 유저read");
+		return sqlSessionFactory.selectOne("UserInfo.getAdminModifyUserInfo",userId);
+		
+	}
+	public int getIDExist(String user_id) {
+		return sqlSessionFactory.selectOne("UserInfo.getIDExist",user_id);
 	}
 
 	
