@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var='root' value='${pageContext.request.contextPath}/'/>
 
@@ -16,11 +17,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<c:import url="../import/header.jsp"></c:import>
 <div class="container" style="margin-top:100px">
 	<div class="row">
-		<div class="col-sm-3"></div>
-		<div class="col-sm-6">
+		<div class="col-sm-2"></div>
+		<div class="col-sm-10">
 			<div class="card shadow">
 				<div class="card-body">
 					<div class="form-group">
@@ -67,13 +68,23 @@
 						
 						</div>
 					</div>
+					<div class="card body">
+					<h5 class="card-header">Leave a Comment:</h5>
+    					<div class="card-body">
+      					  <form:form method="post" modelAttribute="writeReply">
+      					  	<textarea class="form-control" id="cotent" name="content" rows="3" cols="1"placeholder="댓글을 입력하세요"></textarea>
+           					 <div class="form-group">{{ 여기에댓글? }}</div>
+           						 <button type="submit" class="btn btn-primary">Submit</button>
+       					 </form:form>
+    					</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-3"></div>
+		<div class="col-sm-2"></div>
 	</div>
 </div>
-
+<c:import url="../import/footer.jsp"></c:import>
 </body>
 </html>
     

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page session="true" %>
 <c:set var='root' value="${pageContext.request.contextPath }/"/>
 
 <!DOCTYPE html>
@@ -17,30 +16,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<nav>
-<c:choose>
-    <c:when test="${not empty sessionScope.loginsession}">
-        [ ${user_name } ] 님 환영합니다 &emsp;<br>
-        <b><a href = "${root }">홈으로</a></b>&emsp;|&emsp;
-        <b><a href = "${root }user/modify_enter">회원정보수정</a></b>&emsp;|&emsp;
-        <b><a href = "${root }user/logoutSuccess">로그아웃</a></b>
-    </c:when>
-    <c:otherwise>
-    	로그인 하세요&emsp;<br>
-    	<b><a href = "${root}login">로그인</a></b>&nbsp;|&nbsp;<b><a href = "${root }">홈으로</a></b>      
-    </c:otherwise>
-</c:choose>
- 
-<!-- body와  foot에  import예정 -->
-</nav>
-<hr>
-<h3> 게시판  /board/main</h3>
+<c:import url="../import/header.jsp"></c:import>
 
-<!-- 게시글 리스트 -->
 <div class="container" style="margin-top:100px">
 	<div class="card shadow">
 		<div class="card-body">
-			<h4 class="card-title">.</h4>
+			<h4 class="card-title">게시판</h4>
 			<table class="table table-hover" id='board_list'>
 				<thead>
 					<tr>
@@ -55,7 +36,7 @@
 					<c:forEach var='obj' items="${contentlist}">
 					<tr>
 						<td class="text-center d-none d-md-table-cell">${obj.cnt}</td>
-						<td><a href='/board/read?content_cnt=${obj.cnt}'>${obj.title}</a></td>
+						<td><a href='/board/read?content_cnt=${obj.cnt}'>${obj.title} </a>[${obj.recnt}]</td>
 						<td class="text-center d-none d-md-table-cell">${obj.user_id}</td>
 						<td class="text-center d-none d-md-table-cell">${obj.regdate}</td>
 						<td class="text-center d-none d-md-table-cell">${obj.hit}</td>
@@ -68,40 +49,51 @@
 			
 			<div class="d-none d-md-block">
 				<ul class="pagination justify-content-center">
-				<!-- 이것도 c:로 할 예정 -->
-					<li class="page-item">
-						<a href="#" class="page-link">이전</a>
-					</li>
-					<li class="page-item">
-						<a href="#" class="page-link">1</a>
-					</li>
-					<li class="page-item">
-						<a href="#" class="page-link">2</a>
-					</li>
-					<li class="page-item">
-						<a href="#" class="page-link">3</a>
-					</li>
-					<li class="page-item">
-						<a href="#" class="page-link">4</a>
-					</li>
-					<li class="page-item">
-						<a href="#" class="page-link">5</a>
-					</li>
-					<li class="page-item">
-						<a href="#" class="page-link">다음</a>
-					</li>
+				<c:choose>
+					<c:when test="${paging.prevPage <= 0 }">
+						<li class="page-item disabled">
+							<a href="#" class="page-link">이전</a>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item">
+							<a href="${root }board/main?page=${paging.prevPage}" class="page-link">이전</a>
+						</li>
+					</c:otherwise>
+				</c:choose>
+					
+					
+					<c:forEach var='idx' begin="${paging.min }" end='${paging.max }'>
+						<c:choose>
+							<c:when test="${idx == paging.currentPage }">
+								<li class="page-item active">
+									<a href="${root }board/main?page=${idx}" class="page-link">${idx }</a>
+								</li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item">
+									<a href="${root }board/main?page=${idx}" class="page-link">${idx }</a>
+								</li>
+							</c:otherwise>
+						</c:choose>
+					
+					</c:forEach>
+					
+					<c:choose>
+						<c:when test="${paging.max >= paging.pageCnt }">
+							<li class="page-item disabled">
+								<a href="#" class="page-link">다음</a>
+							</li>
+						</c:when>
+						
+						<c:otherwise>
+							<li class="page-item">
+								<a href="${root }board/main?page=${paging.nextPage}" class="page-link">다음</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
 				</ul>
-			</div>
 			
-			<div class="d-block d-md-none">
-				<ul class="pagination justify-content-center">
-					<li class="page-item">
-						<a href="#" class="page-link">이전</a>
-					</li>
-					<li class="page-item">
-						<a href="#" class="page-link">다음</a>
-					</li>
-				</ul>
 			</div>
 			
 			<div class="text-right">
@@ -113,7 +105,7 @@
 		</div>
 	</div>
 </div>
-
+<c:import url="../import/footer.jsp"></c:import>
 </body>
 </html>
 

@@ -24,7 +24,7 @@ public class JoinService {
 		
 		userInfo.setCrt_dt(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 		// 현재시간 셋팅
-		
+		userInfo.setIdx(1);
 		userInfoDao.joinUser(userInfo);
 	}
 	
@@ -115,9 +115,22 @@ public class JoinService {
 		return mv;
 	}
 	
-public int checkuserIdExist(String user_id) {
-		
-		return userInfoDao.getIDExist(user_id);
+public Integer checkuserIdExist(String user_id) {
+	
+	System.out.println(userInfoDao.getIDExist(user_id));
+	if(userInfoDao.getIDExist(user_id)!=null) {
+		System.out.println("아이디 존재함");
+		return 1;
+	}
+	else return 0;
 }
-
+/*	public boolean checkuserIdExist(String user_id) {
+		
+		System.out.println(userInfoDao.getIDExist(user_id));
+		if(userInfoDao.getIDExist(user_id)!=null) {
+			System.out.println("아이디 존재함");
+			return false;
+		}
+		else return true;
+	}*/
 }

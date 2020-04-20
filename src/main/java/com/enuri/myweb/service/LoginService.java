@@ -84,6 +84,7 @@ public class LoginService {
 			loginsession.setCrt_dt(loginuser.getCrt_dt());
 			loginsession.setUser_email(loginuser.getUser_email());
 			loginsession.setUser_gender(loginuser.getUser_gender());
+			loginsession.setIdx(loginuser.getIdx());
 			loginsession.setUserlogin(true);
 			System.out.println("로그인세션에 정보저장완료");
 			

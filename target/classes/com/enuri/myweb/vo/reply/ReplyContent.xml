@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="ReplyContent">
+	<resultMap type="com.enuri.myweb.vo.reply.ReplyContent" id="ReplyContentMap">
+
+		<result property="cnt" column="CNT" />
+		<result property="rno" column="RNO" />
+		<result property="user_name" column="USER_NAME" />
+		<result property="user_id" column="USER_ID" />
+		<result property="content" column="CONTENT" />
+		<result property="regdate" column="REGDATE" />
+		<result property="up_regdate" column="UP_REGDATE" />
+	</resultMap>
+	
+	<select id="getAllReply" parameterType="int" resultMap="ReplyContentMap">
+		SELECT *
+		FROM REPLY_CONTENT
+	</select> <!-- 게시물에 댓글들 조회 -->
+	
+	<select id="getReplyCnt" parameterType="int" resultType="int">
+		SELECT COUNT(*)
+		FROM REPLY_CONTENT
+		WHERE CNT=#{cnt}
+	</select><!-- 게시물번호에 해당하는 댓글들 수 -->
+	
+	
+	<insert id="insertReply" parameterType="ReplyContent">
+		INSERT INTO REPLY_CONTENT
+		( CNT, RNO, USER_NAME, USER_ID,CONTENT,REGDATE,UP_REGDATE )
+		VALUES
+		( #{cnt},#{rno},#{user_name},#{user_id},#{content},#{regdate},#{up_regdate})
+	</insert>
+	
+	<update id="updateReply" parameterType="ReplyContent">
+		UPDATE REPLY_CONTENT 
+		SET CONTENT=#{content},UP_REGDATE=#{up_regdate}
+		WHERE CNT=#{cnt}
+		AND RNO=#{rno}		
+	</update>
+	
+	<delete id="deleteReply" parameterType="ReplyContent">
+		DELETE FROM REPLY_CONTENT 
+		WHERE CNT=#{cnt}
+		AND RNO=#{rno}
+	</delete>
+	
+	<select id="getMaxReplyCnt"  parameterType="int" resultType="Integer">
+		SELECT IFNULL(MAX(RNO),0) AS RNO
+		FROM REPLY_CONTENT 
+		WHERE CNT=#{cnt}
+	</select>
+	
+	
+	
+</mapper>

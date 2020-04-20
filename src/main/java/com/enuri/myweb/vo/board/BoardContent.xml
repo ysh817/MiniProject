@@ -10,6 +10,7 @@
 		<result property="regdate" column="REGDATE" />
 		<result property="cnt" column="CNT" />
 		<result property="hit" column="HIT" /> <!-- 조회수 -->
+		<result property="recnt" column="RECNT" /> <!-- 댓글 수 -->
 
 	</resultMap>
 
@@ -30,9 +31,9 @@
 	
 	<insert id="insertBoard" parameterType="BoardContent">
 		INSERT INTO BOARD_CONTENT
-		( TITLE, USER_ID,CONTENT,REGDATE,CNT,HIT )
+		( TITLE, USER_ID,CONTENT,REGDATE,CNT,HIT,RECNT )
 		VALUES
-		( #{title},#{user_id},#{content},#{regdate},#{cnt},#{hit})
+		( #{title},#{user_id},#{content},#{regdate},#{cnt},#{hit},#{recnt})
 		<!-- SELECT case COUNT(*) when 0 then 1 else max(CNT)+1 
 		,#{title},#{writer},#{content},#{regdate} FROM BOARD_CONTENT 
  -->
@@ -77,10 +78,26 @@
 		WHERE CNT=#{cnt}
 	</select>
 	
-	<select id="getBoardList" resultType="BoardContent">
+<!-- 	<select id="getSearchContent" resultType="BoardContent">
 		SELECT CNT, TITLE, USER_ID, REGDATE, HIT 
 		FROM BOARD_CONTENT 
-		<!-- WHERE title LIKE CONCAT('%',#{searchKeyword},'%')  -->
+		WHERE title LIKE CONCAT('%',#{searchKeyword},'%') 
+		ORDER BY CNT DESC
+	</select> -->
+	<select id="getBoardList"  resultType="BoardContent">
+		SELECT * 
+		FROM BOARD_CONTENT 
+		ORDER BY CNT DESC
+	</select>
+	<select id="getBoardListPage"  resultType="BoardContent">
+		SELECT * 
+		FROM BOARD_CONTENT 
+		<where>
+		<if test="">
+		
+		
+		</if>
+		</where>
 		ORDER BY CNT DESC
 	</select>
 

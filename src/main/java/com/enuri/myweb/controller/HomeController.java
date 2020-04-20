@@ -121,7 +121,12 @@ public class HomeController {
 	public String welcome() {
 		return "/welcome";
 	}
-	
+	@GetMapping("/about")
+	public String about() {
+		
+		
+		return "/about";
+	}
 	
 	/*@InitBinder
 	public void initBinder(WebDataBinder binder) {

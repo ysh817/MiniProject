@@ -19,7 +19,7 @@
 
 </head>
 <body>
-
+<c:import url="../import/header.jsp"></c:import>
 
 <P>비밀번호 입력해주세요</P>
 <div class="container" style="margin-top:100px">
@@ -48,7 +48,7 @@
 	</div>
 </div>
 
-
+<c:import url="../import/footer.jsp"></c:import>
 
 </body>
 </html>

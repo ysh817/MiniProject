@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.enuri.myweb.service.AdminService;
+import com.enuri.myweb.service.BoardService;
 import com.enuri.myweb.service.LoginService;
+import com.enuri.myweb.vo.page.PageMaker;
 import com.enuri.myweb.vo.userinfo.UserInfo;
 
 @Controller
@@ -24,17 +26,21 @@ public class AdminController {
 	
 	@Autowired
 	AdminService adminService;
+
 	
 	@Resource(name="loginsession")
 	@Lazy UserInfo loginsession;
 	
 	@GetMapping("/user_list")
-	public String adminUser_list(Model model, UserInfo userInfo) {
+	public String adminUser_list(Model model, UserInfo userInfo,@RequestParam(value="page", defaultValue="1")int page ) {
 		
 		System.out.println("C-회원관리");
-		List<UserInfo> list=adminService.getAllUser();
+		List<UserInfo> list=adminService.getAllUser(page);
 		model.addAttribute("userlist", list);
 		
+		PageMaker paging = adminService.getPaging(page);
+		
+		model.addAttribute("paging", paging);
 		return"/admin/user_list";
 	}
 	@GetMapping("/user_modify")

@@ -4,10 +4,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import com.enuri.myweb.vo.page.PageMaker;
 import com.enuri.myweb.vo.userinfo.UserInfo;
 import com.enuri.myweb.vo.userinfo.UserInfoDao;
 
@@ -18,6 +20,10 @@ public class AdminService {
 	private UserInfoDao dao;
 	@Resource(name="loginsession")
 	@Lazy UserInfo loginsession;
+	
+	static int pageCnt =10; //페이지당 10게시물
+	static int pageRange = 10; //뜨는 페이지번호갯수
+	
 	/*
 	public List<UserInfo> getuserList(UserInfo userInfo) {
 		
@@ -30,11 +36,19 @@ public class AdminService {
 		return list;
 	}*/
 	
-	public List<UserInfo> getAllUser(){		
-		return dao.getAllUserList();
+	public List<UserInfo> getAllUser(int page){	
+		int start = (page-1)*pageCnt;
+		RowBounds rowBounds = new RowBounds(start, pageCnt);
+		return dao.getAllUserList(rowBounds);
 	}
 	
-	
+	//페이징
+		public PageMaker getPaging(int currentPage) {
+			int contentCnt = dao.getCntUser();
+			PageMaker page = new PageMaker(contentCnt, currentPage, pageCnt, pageRange);
+			return page;
+		}
+
 	public boolean userGradeCheck(UserInfo userInfo) {
 		String grade= userInfo.getUser_code();
 		
@@ -49,5 +63,6 @@ public class AdminService {
 	public UserInfo getModifyUserInfo(String userId) {
 		return dao.getAdminModifyUserInfo(userId);
 	}
+	
 
 }

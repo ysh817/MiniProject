@@ -12,6 +12,7 @@
 		<result property="user_gender" column="USER_GENDER"/>
 		<result property="crt_dt" column="CRT_DT"/>
 		<result property="user_code" column="USER_CODE"/>
+		<result property="idx" column="IDX"/>
 		
 
 	</resultMap>
@@ -25,7 +26,7 @@
 	<select id="getAllUserList" resultMap="UserInfoMap">
 		SELECT *
 		FROM USER_INFO
-		ORDER BY USER_CODE
+		ORDER BY USER_CODE,CRT_DT
 	</select>	
 	<!-- 사용자관리 -->
 	
@@ -51,6 +52,11 @@
 		AND USER_PW = #{user_pw}
 	</select>
 	
+	 <select id="getCntUser" resultType="int">
+		SELECT COUNT(*) AS IDX
+		FROM USER_INFO	
+	</select> 
+	
 	
 	<!--  insert-param -->
 	<!-- select-result -->
@@ -72,12 +78,12 @@
 		( USER_ID, USER_PW ,USER_PW2, 
 		USER_NAME, USER_EMAIL, USER_GENDER,
 		<!-- DATE_FORMAT(TA.USE_START_DATE, '%Y-%m-%d') AS CRT_DT -->
-		CRT_DT, USER_CODE )
+		CRT_DT, USER_CODE ,IDX )
 		
 		VALUES
 		( #{user_id}, #{user_pw},#{user_pw2}, 
 		#{user_name}, #{user_email}, #{user_gender},
-		#{crt_dt} ,'user' )
+		#{crt_dt} ,'user', #{idx} )
 
 	
 	</insert> 
@@ -97,15 +103,15 @@
 	  <update id="adminModifyUser" parameterType="UserInfo" >
 		UPDATE USER_INFO 
 		SET USER_NAME=#{user_name}, 
-		USER_PW=#{user_pw},USER_PW2=#{user_pw}	
+		USER_PW=#{user_pw},USER_PW2=#{user_pw},USER_CODE=#{user_code}	
 		WHERE USER_ID=#{user_id}
 	</update>
 
-	<!-- <select id="getIDExist" parameterType="String" resultMap="int">
-		SELECT COUNT(*)
+	<select id="getIDExist" parameterType="String" resultMap="UserInfoMap">
+		SELECT USER_ID
 		FROM USER_INFO
 		WHERE USER_ID = #{user_id} 
-	</select> -->
+	</select> 
 	
 	<!-- <delete id="deleteUser" parameterType="UserInfo">
 		DELETE 

@@ -2,6 +2,7 @@ package com.enuri.myweb.vo.board;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,15 +14,18 @@ public class BoardContentDao {
 	
 	@Autowired SqlSession sqlSessionFactory;
 		
-	public List<BoardContent> getBoardList(){
+	/*public List<BoardContent> getBoardList(){
 		List<BoardContent> List = sqlSessionFactory.selectList("BoardContent.getBoardList");
+		return List;
+	}*/
+	public List<BoardContent> getBoardList(RowBounds rowBounds){
+		List<BoardContent> List = sqlSessionFactory.selectList("BoardContent.getBoardList",null,rowBounds);
 		return List;
 	}
 	
 	public void insertBoard(BoardContent boardContent) {
-		//글 쓰기
-		sqlSessionFactory.insert("BoardContent.insertBoard", boardContent);
-		
+		//글 쓰기	
+		sqlSessionFactory.insert("BoardContent.insertBoard", boardContent);	
 		System.out.println("DB에 글쓰기 저장 완료");
 		
 	}

@@ -11,6 +11,7 @@
 	<typeAliases>
 	 	<typeAlias alias="UserInfo" type="com.enuri.myweb.vo.userinfo.UserInfo"/>
 	 	<typeAlias alias="BoardContent" type="com.enuri.myweb.vo.board.BoardContent"/>
+	 	<typeAlias alias="ReplyContent" type="com.enuri.myweb.vo.reply.ReplyContent"/>
 	 	
 
 	</typeAliases>

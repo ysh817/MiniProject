@@ -18,7 +18,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<c:import url="../import/header.jsp"></c:import>
 
 <div class="container" style="margin-top:100px">
 	<div class="row">
@@ -49,6 +49,7 @@
 						<input type="hidden" name="user_email" value="${usermodify.user_email}">
 						<input type="hidden" name="crt_dt" value="${usermodify.crt_dt}">
 						<input type="hidden" name="user_pw2" value="${usermodify.user_pw2}">
+						<input type="hidden" name="idx" value="${usermodify.idx}">
 						
 							<div class="text-right">
 								<button type="submit" class="btn btn-primary">수정완료</button>
@@ -62,7 +63,7 @@
 		<div class="col-sm-3"></div>
 	</div>
 </div>
-
+<c:import url="../import/footer.jsp"></c:import>
 
 </body>
 </html>

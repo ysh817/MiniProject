@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var='root' value="${pageContext.request.contextPath }/"/>
 
 <!-- 수정예정 -->
 <!DOCTYPE html>
@@ -16,10 +18,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+<c:import url="../import/header.jsp"></c:import>
 <div class="container" style="margin-top:100px">
 	<div class="row">
-		<div class="col-sm-3"></div>
-		<div class="col-sm-6">
+		<div class="col-sm-2"></div>
+		<div class="col-sm-10">
 			<div class="card shadow">
 				<div class="card-body">
 					<form:form action='/board/write' method='post' modelAttribute="writeContent">
@@ -43,12 +46,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-3"></div>
+		<div class="col-sm-2"></div>
 	</div>
 </div>
 <!-- body와  foot에  import예정 -->
 
-
+<c:import url="../import/footer.jsp"></c:import>
 </body>
 </html>
     

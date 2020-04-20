@@ -18,12 +18,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<c:import url="../import/header.jsp"></c:import>
 
 <div class="container" style="margin-top:100px">
 	<div class="row">
-		<div class="col-sm-3"></div>
-		<div class="col-sm-6">
+		<div class="col-sm-2"></div>
+		<div class="col-sm-10">
 			<div class="card shadow">
 				<div class="card-body">
 					<form:form  method="post" modelAttribute="modifyContent">
@@ -52,6 +52,7 @@
 						<div class="form-group">
 							<div class="text-right">
 								<input type="hidden" name="hit" value="${modify.hit}">
+								<input type="hidden" name="recnt" value="${modify.recnt}">
 								<button type="submit" class="btn btn-primary">수정완료</button>
 								<a href="${root }board/read?content_cnt=${modify.cnt}" class="btn btn-info">취소</a>
 							</div>
@@ -60,11 +61,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-3"></div>
+		<div class="col-sm-2"></div>
 	</div>
 </div>
 
-
+<c:import url="../import/footer.jsp"></c:import>
 </body>
 </html>
     

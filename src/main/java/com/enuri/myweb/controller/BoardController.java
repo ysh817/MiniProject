@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.enuri.myweb.service.BoardService;
 
 import com.enuri.myweb.service.LoginService;
+import com.enuri.myweb.service.ReplyService;
 import com.enuri.myweb.vo.board.BoardContent;
+import com.enuri.myweb.vo.page.PageMaker;
 import com.enuri.myweb.vo.userinfo.UserInfo;
 
 
@@ -29,12 +31,13 @@ public class BoardController {
 	
 
 	@Autowired BoardService boardService;
+	@Autowired ReplyService replyService;//댓글
 	
 	@Resource(name="loginsession")
 	@Lazy UserInfo loginsession;
 
 	
-	@GetMapping("/main")
+/*	@GetMapping("/main")
 	public String main(Model model,UserInfo userInfo) {
 				
 		String name=loginsession.getUser_name();
@@ -44,6 +47,25 @@ public class BoardController {
 		List<BoardContent> list = boardService.getBoardList();
 		model.addAttribute("contentlist", list);
 		//글 List 전달
+
+
+		return "/board/main";
+	}
+	*/
+	@GetMapping("/main")
+	public String main(Model model,UserInfo userInfo, @RequestParam(value="page", defaultValue="1")int page) {
+				
+		String name=loginsession.getUser_name();
+		System.out.println("C-board에서 유저 이름:"+name); //0
+		model.addAttribute("user_name", name); // ~님 안녕하세요 메시지
+		
+		List<BoardContent> list = boardService.getBoardList(page);
+		model.addAttribute("contentlist", list);
+		//글 List 전달
+		
+		PageMaker paging = boardService.getPaging(page);
+		model.addAttribute("paging", paging);
+		//해당게시물번호의 댓글수 DB에추가
 
 
 		return "/board/main";

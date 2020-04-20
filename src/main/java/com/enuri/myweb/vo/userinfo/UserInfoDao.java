@@ -2,6 +2,7 @@ package com.enuri.myweb.vo.userinfo;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -56,9 +57,9 @@ public class UserInfoDao {
 		System.out.println("DB에 회원정보 저장완료");//
 		
 	}
-	public List<UserInfo> getAllUserList() {
+	public List<UserInfo> getAllUserList(RowBounds rowBounds) {
 		//admin이 회원정보를 관리하기 위해 유저목록 페이지에 갖고 올 리스트
-		return sqlSessionFactory.selectList("UserInfo.getAllUserList");		
+		return sqlSessionFactory.selectList("UserInfo.getAllUserList",null,rowBounds);		
 	}
 	public void updateUserInfo(UserInfo userinfo) {
 		//user/user_modify
@@ -76,9 +77,15 @@ public class UserInfoDao {
 		return sqlSessionFactory.selectOne("UserInfo.getAdminModifyUserInfo",userId);
 		
 	}
-	public int getIDExist(String user_id) {
+	public UserInfo getIDExist(String user_id) {
 		return sqlSessionFactory.selectOne("UserInfo.getIDExist",user_id);
 	}
+	
+	public int getCntUser() {
+		int result = sqlSessionFactory.selectOne("UserInfo.getCntUser");
+		return result;
+	}
+
 
 	
 	

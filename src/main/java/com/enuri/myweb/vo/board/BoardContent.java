@@ -8,6 +8,7 @@ public class BoardContent {
 	private String regdate;
 	private int cnt;
 	private int hit;
+	private int recnt;
 	
 	public String getTitle() {
 		return title;
@@ -46,6 +47,13 @@ public class BoardContent {
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
+	public int getRecnt() {
+		return recnt;
+	}
+	public void setRecnt(int recnt) {
+		this.recnt = recnt;
+	}
+	
 	
 	
 

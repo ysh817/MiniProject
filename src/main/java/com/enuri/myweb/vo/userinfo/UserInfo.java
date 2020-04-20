@@ -22,7 +22,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class UserInfo {
 	
 	//@Size(max=20, message="아이디는 20자 미만")
-	//@Pattern(regexp = "[a-zA-Z0-9]*", message="알파벳과 숫자만 허용")
+	@Pattern(regexp = "[a-zA-Z0-9]*", message="알파벳과 숫자만 허용")
 	@NotEmpty(message="아이디를 입력하세요")
 	private String user_id;
 	
@@ -36,9 +36,9 @@ public class UserInfo {
 	@NotEmpty(message="이름을 입력하세요")
 	private String user_name;
 	
-	//@Pattern(regexp="^[_0-9a-zA-Z-]+@[0-9a-zA-Z]+(.[_0-9a-zA-Z-]+)*$"
-			//,message="이메일의 형식이 아닙니다" )
-	//@NotEmpty(message="이메일을 입력하세요")
+	@Pattern(regexp="^[_0-9a-zA-Z-]+@[0-9a-zA-Z]+(.[_0-9a-zA-Z-]+)*$"
+			,message="이메일의 형식이 아닙니다" )
+	@NotEmpty(message="이메일을 입력하세요")
 	private String user_email;
 	
 	private String user_gender;
@@ -46,13 +46,17 @@ public class UserInfo {
 	
 	private String crt_dt;
 	private String user_code;
+	private int idx;
 
 	private boolean userlogin;
+	//private boolean dulcheck;
 
-	
+
+
 	public UserInfo() {
 		
 		this.setUserlogin(false);
+		//this.setDulcheck(false);
 
 	}
 
@@ -115,7 +119,20 @@ public class UserInfo {
 	public void setUserlogin(boolean userlogin) {
 		this.userlogin = userlogin;
 	}
+
+
+	public int getIdx() {
+		return idx;
+	}
+
+
+	public void setIdx(int idx) {
+		this.idx = idx;
+	}
 	
+
+	
+
 	
 
 

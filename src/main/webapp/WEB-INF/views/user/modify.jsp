@@ -20,7 +20,7 @@
 </head>
 <body>
 
-
+<c:import url="../import/header.jsp"></c:import>
 
 <div class="container" style="margin-top:100px">
 	<div class="row">
@@ -51,6 +51,7 @@
 						<input type="hidden" name="user_code" value="${modify.user_code}">
 						<input type="hidden" name="user_email" value="${modify.user_email}">
 						<input type="hidden" name="crt_dt" value="${modify.crt_dt}">
+						<input type="hidden" name="idx" value="${modify.idx}">
 						<div class="text-right">
 							<button type="submit" class="btn btn-primary">정보수정</button>
 						</div>
@@ -63,7 +64,7 @@
 		<div class="col-sm-3"></div>
 	</div>
 </div>
-
+<c:import url="../import/footer.jsp"></c:import>
 
 
 </body>
