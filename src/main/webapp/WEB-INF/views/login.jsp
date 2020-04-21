@@ -20,7 +20,7 @@
     
     
     <body>
-    <c:import url="top_menu.jsp"></c:import>
+    <c:import url="import/header.jsp"></c:import>
 
 <div class="container" style="margin-top:100px">
 	<div class="row">

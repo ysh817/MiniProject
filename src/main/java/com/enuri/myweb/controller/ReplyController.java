@@ -3,11 +3,13 @@ package com.enuri.myweb.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,9 +44,15 @@ public class ReplyController {
 	}
 	
 	@RequestMapping(value = "/insert", method = {RequestMethod.POST,RequestMethod.GET})
-	public String insert(@ModelAttribute("writeReply") ReplyContent replyContent,Model model) {
+	public String insert(@Valid @ModelAttribute("writeReply") ReplyContent replyContent,BindingResult result
+			,Model model) {
 		System.out.println("댓글작성: " +replyContent.getCnt());
 		int cnt= replyContent.getCnt();
+		if(result.hasErrors()) {//true 면 오류있음. 다시 회원가입창으로
+			System.out.println("유효성에서 또걸림1: "+result);
+			return "redirect:/board/read?content_cnt="+cnt+"";
+		}
+		
 		replyService.writeReply(replyContent,cnt);
 		//board의 게시글 개수(recnt) +1씩 증가
 		boardService.updateReplyCnt(cnt);

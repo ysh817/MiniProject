@@ -18,6 +18,25 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 </head>
+<script>
+	
+$(document).ready(function(){
+    	
+    	$("#submit").on("click", function(){
+    		
+    		var user_pw = $('#user_pw').val();
+    		var user_pw2 = $('#user_pw2').val();
+    		
+    		if(user_pw!=user_pw2){
+				alert("비밀번호가 일치하지 않습니다");
+				$("#user_pw").focus();
+				return false;
+			}
+    	});
+})
+
+
+</script>
 <body>
 
 <c:import url="../import/header.jsp"></c:import>
@@ -53,7 +72,7 @@
 						<input type="hidden" name="crt_dt" value="${modify.crt_dt}">
 						<input type="hidden" name="idx" value="${modify.idx}">
 						<div class="text-right">
-							<button type="submit" class="btn btn-primary">정보수정</button>
+							<button type="submit" id="submit"class="btn btn-primary">정보수정</button>
 						</div>
 					</div>
 					

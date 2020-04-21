@@ -38,7 +38,7 @@
 					<c:forEach var='obj' items="${userlist}">
 					<tr>
 						<td class="text-center d-none d-md-table-cell">${obj.user_id}</td>
-						<td><a href='/admin/user_modify?user_id=${obj.user_id}'>${obj.user_name}</a></td>
+						<td><a href='/admin/usermodify?user_id=${obj.user_id}'>${obj.user_name}</a></td>
 						<td class="text-center d-none d-md-table-cell">${obj.user_code}</td>
 						<td class="text-center d-none d-md-table-cell">${obj.user_email}</td>
 						<td class="text-center d-none d-md-table-cell">${obj.user_gender}</td>
@@ -58,7 +58,7 @@
 					</c:when>
 					<c:otherwise>
 						<li class="page-item">
-							<a href="${root }admin/user_list?page=${paging.prevPage}" class="page-link">이전</a>
+							<a href="${root }admin/userlist?page=${paging.prevPage}" class="page-link">이전</a>
 						</li>
 					</c:otherwise>
 				</c:choose>
@@ -68,12 +68,12 @@
 						<c:choose>
 							<c:when test="${idx == paging.currentPage }">
 								<li class="page-item active">
-									<a href="${root }admin/user_list?page=${idx}" class="page-link">${idx }</a>
+									<a href="${root }admin/userlist?page=${idx}" class="page-link">${idx }</a>
 								</li>
 							</c:when>
 							<c:otherwise>
 								<li class="page-item">
-									<a href="${root }admin/user_list?page=${idx}" class="page-link">${idx }</a>
+									<a href="${root }admin/userlist?page=${idx}" class="page-link">${idx }</a>
 								</li>
 							</c:otherwise>
 						</c:choose>
@@ -89,7 +89,7 @@
 						
 						<c:otherwise>
 							<li class="page-item">
-								<a href="${root }admin/user_list?page=${paging.nextPage}" class="page-link">다음</a>
+								<a href="${root }admin/userlist?page=${paging.nextPage}" class="page-link">다음</a>
 							</li>
 						</c:otherwise>
 					</c:choose>

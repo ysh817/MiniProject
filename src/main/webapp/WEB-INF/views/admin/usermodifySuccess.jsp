@@ -4,5 +4,5 @@
 <c:set var='root' value='${pageContext.request.contextPath}/'/>
 <script>
 	alert('수정되었습니다')
-	location.href = '${root}admin/user_list'
+	location.href = '${root}admin/userlist'
 </script>

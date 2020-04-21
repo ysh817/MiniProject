@@ -16,7 +16,7 @@
 			</li>
 			<c:if test="${loginsession.user_code eq 'admin' }">
 			<li class="nav-item">
-					<a href="${root }admin/user_list" class="nav-link">ADMIN</a>
+					<a href="${root }admin/userlist" class="nav-link">ADMIN</a>
 			</li>
 				</c:if>
 			<c:if test="${loginsession.userlogin == true }">
@@ -41,7 +41,7 @@
 				<c:otherwise>
 					<c:if test="${loginsession.userlogin == true }">
 						<li class="nav-item">
-							<a href="${root }user/modify_enter" class="nav-link">정보수정</a>
+							<a href="${root }user/modifyenter" class="nav-link">정보수정</a>
 						</li>
 						<li class="nav-item">
 							<a href="${root }user/logoutSuccess" class="nav-link">로그아웃</a>

@@ -18,6 +18,24 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 </head>
+<script>
+$(document).ready(function(){
+	
+	$("#submit").on("click", function(){
+		
+		var user_pw = $('#user_pw').val();
+		var user_pw2 = $('#user_pw2').val();
+		
+		if(user_pw==''){
+			alert("비밀번호를 입력하세요");
+			return false;
+		}
+	});
+})
+
+
+
+</script>
 <body>
 <c:import url="../import/header.jsp"></c:import>
 
@@ -33,10 +51,12 @@
 					<div class="form-group">
 						<label for="user_pw">비밀번호</label>
 						<input type="password" id="user_pw" name="user_pw" class="form-control" />
+						<form:errors path="user_pw" style="color:red"/>
 					</div>
 					<div class="form-group">
 						<div class="text-right">
-							<button type="submit" class="btn btn-primary">확인</button>
+							<input type="hidden" id="user_pw2"name="user_pw2" value="${loginsession.user_pw}">
+							<button type="submit"id="submit" class="btn btn-primary" onclick="pwCheck();">확인</button>
 						</div>
 					</div>
 					

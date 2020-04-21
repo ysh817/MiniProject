@@ -4,12 +4,14 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -92,15 +94,17 @@ public class BoardController {
 	}
 	
 	@GetMapping("/write")
-	public String write() {
+	public String write(@ModelAttribute("writeContent")BoardContent boardContent) {
 		System.out.println("C-게시글작성 페이지 이동");
 		return "/board/write";
 	}
 	@PostMapping("/write")
-	public String write(@ModelAttribute("writeContent")BoardContent boardContent ,Model model) {
+	public String write(@Valid @ModelAttribute("writeContent")BoardContent boardContent,BindingResult result ,Model model) {
+		
+		if(result.hasErrors()) {//true 면 오류있음. 다시 회원가입창으로
+			return "/board/write";
+		}
 		System.out.println("C-게시글 작성");
-		System.out.println(boardContent.getTitle());
-		System.out.println(boardService.maxCntPlus());
 		
 		boardService.writeBoard(boardContent);
 		model.addAttribute("cnt", boardContent.getCnt());
@@ -109,19 +113,28 @@ public class BoardController {
 	}
 	
 	@GetMapping("/modify")
-	public String modify(@RequestParam("content_cnt")int content_cnt
-						,Model model, BoardContent boardContent) {
+	public String modify(@ModelAttribute("modifyContent")BoardContent boardContent,@RequestParam("content_cnt")int content_cnt
+						,Model model) {
 		BoardContent modifyContent = boardService.readBoardContent(content_cnt);
 		model.addAttribute("modify", modifyContent);
-		
-		System.out.println("새로 작성한 제목:"+modifyContent.getTitle());
+		boardContent.setCnt(modifyContent.getCnt());
+		boardContent.setContent(modifyContent.getContent());
+		boardContent.setHit(modifyContent.getHit());
+		boardContent.setRecnt(modifyContent.getRecnt());
+		boardContent.setRegdate(modifyContent.getRegdate());
+		boardContent.setTitle(modifyContent.getTitle());
+		boardContent.setUser_id(modifyContent.getUser_id());
+
 		
 		return "/board/modify";
 	}
 	@PostMapping("/modify")
-	public String modify(@ModelAttribute("modifyContent")BoardContent boardContent) {
+	public String modify(@Valid @ModelAttribute("modifyContent")BoardContent boardContent, BindingResult result) {
 		System.out.println("C-게시글 수정");
-		System.out.println(boardContent.getTitle());
+		
+		if(result.hasErrors()) {//true 면 오류있음. 다시 회원가입창으로
+			return "/board/modify";
+		}
 
 		boardService.modifyBoardContent(boardContent);
 		//return "/board/modifySuccess;

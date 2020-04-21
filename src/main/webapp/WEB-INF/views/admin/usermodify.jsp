@@ -53,7 +53,7 @@
 						
 							<div class="text-right">
 								<button type="submit" class="btn btn-primary">수정완료</button>
-								<a href="${root }admin/user_list" class="btn btn-info">취소</a>
+								<a href="${root }admin/userlist" class="btn btn-info">취소</a>
 							</div>
 						</div>
 					</form:form>

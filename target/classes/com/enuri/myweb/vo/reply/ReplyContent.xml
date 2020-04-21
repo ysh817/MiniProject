@@ -17,6 +17,7 @@
 	<select id="getAllReply" parameterType="int" resultMap="ReplyContentMap">
 		SELECT *
 		FROM REPLY_CONTENT
+		WHERE CNT=#{cnt}
 	</select> <!-- 게시물에 댓글들 조회 -->
 	
 	<select id="getReplyCnt" parameterType="int" resultType="int">

@@ -1,9 +1,14 @@
 package com.enuri.myweb.vo.board;
 
+import javax.validation.constraints.NotEmpty;
+
 public class BoardContent {
 	
+	@NotEmpty(message="제목을 입력하세요")
 	private String title;
 	private String user_id;
+	
+	@NotEmpty(message="내용을 입력하세요")
 	private String content;
 	private String regdate;
 	private int cnt;

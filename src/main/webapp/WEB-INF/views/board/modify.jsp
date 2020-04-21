@@ -38,11 +38,16 @@
 						</div>
 						<div class="form-group">
 							<label for="title">제목</label>
-							<input type="text" id="title" name="title" class="form-control" value="${modify.title}"/>
+							<form:input path="title" class='form-control'/>
+							<!-- <input type="text" id="title" name="title" class="form-control" value="${modify.title}"/> -->
+							<form:errors path="title" style="color:red"/> 
+						
 						</div>
 						<div class="form-group">
 							<label for="content">내용</label>
-							<textarea id="content" name="content" class="form-control" rows="10" style="resize:none">${modify.content}</textarea>
+							<!--<textarea id="content" name="content" class="form-control" rows="10" style="resize:none">${modify.content}</textarea>-->
+							<form:textarea path="content" class="form-control" rows="10" style="resize:none"/>
+							<form:errors path="content" style="color:red"/> 
 						</div>
 <!--						<div class="form-group">
  							<label for="board_file">첨부 이미지</label>

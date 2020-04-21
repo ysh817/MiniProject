@@ -23,7 +23,7 @@
 		var rno = $("#rno").val();
 		
 		$.ajax({
-			url : '${root}reply/modify?content_cnt='+cnt'&reply_no='+rno,
+			url : '${root}reply/modify?content_cnt='+cnt+'&reply_no='+rno,
 			type : "get",
 			success : function(data){
 				if(data == 1){
@@ -103,6 +103,7 @@
     					<div class="card-body">
       					  <form:form action="${root}reply/insert" method="post" modelAttribute="writeReply">
       					  	<textarea class="form-control" id="content" name="content" rows="3" cols="1"placeholder="댓글을 입력하세요"></textarea>
+           					<form:errors path="content" style='color:red'/>
            					 <div class="form-group"></div>
            						<input type="hidden" name="cnt" value="${read.cnt}">
            						 <button type="submit" class="btn btn-primary" >등록</button>
@@ -132,7 +133,7 @@
 				                     <span style="padding-left: 7px; font-size: 12pt">
 				                     <!-- <a href="${root}reply/modify?content_cnt=${obj.cnt}&reply_no=${obj.rno}"  style="padding-right:5px">수정</a> -->
 				                     
-				                     <a href="javascript:void(0)" onclick="modifyReply();" id="modifyCheck">수정</a>
+				                     <!--  <a href="javascript:void(0)" onclick="modifyReply();" id="modifyCheck">수정</a>-->
 				                     
 				                     <input type="hidden" name="cnt" value="${obj.cnt}">
 			                    	 <input type="hidden" name="rno" value="${obj.rno}">

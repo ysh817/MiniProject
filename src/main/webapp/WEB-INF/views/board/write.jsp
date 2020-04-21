@@ -28,12 +28,14 @@
 					<form:form action='/board/write' method='post' modelAttribute="writeContent">
 						<div class="form-group">
 							<label for="title">제목</label>
-							<input type="text" class='form-control' id="title" name="title" placeholder="제목을 입력하세요" />
+							<form:input path="title" class='form-control'/>
+							<!-- <input type="text" class='form-control' id="title" name="title" placeholder="제목을 입력하세요" /> -->
 							<form:errors path='title' style='color:red' />
 						</div>
 						<div class="form-group">
 							<label for="content">내용</label>
-							<textarea id="content" name="content" class="form-control" rows="10" placeholder="내용을 입력하세요"></textarea>
+							<form:textarea path="content" class="form-control" rows="10" placeholder="내용을 입력하세요"></form:textarea>
+							<!-- <textarea id="content" name="content" class="form-control" rows="10" placeholder="내용을 입력하세요"></textarea> -->
 							<form:errors path='content' style='color:red'/>
 						</div>
 						<div class="form-group">

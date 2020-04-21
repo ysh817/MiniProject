@@ -31,7 +31,7 @@ public class AdminController {
 	@Resource(name="loginsession")
 	@Lazy UserInfo loginsession;
 	
-	@GetMapping("/user_list")
+	@GetMapping("/userlist")
 	public String adminUser_list(Model model, UserInfo userInfo,@RequestParam(value="page", defaultValue="1")int page ) {
 		
 		System.out.println("C-회원관리");
@@ -41,25 +41,25 @@ public class AdminController {
 		PageMaker paging = adminService.getPaging(page);
 		
 		model.addAttribute("paging", paging);
-		return"/admin/user_list";
+		return"/admin/userlist";
 	}
-	@GetMapping("/user_modify")
-	public String adminUser_modify(@RequestParam("user_id")String userId
+	@GetMapping("/usermodify")
+	public String adminUsermodify(@RequestParam("user_id")String userId
 				, UserInfo userInfo, Model model) {
 		
 		UserInfo usermodify = adminService.getModifyUserInfo(userId);
 		System.out.println("수정할 회원id="+usermodify.getUser_id());//0
 		
 		model.addAttribute("usermodify", usermodify);
-		return "/admin/user_modify";
+		return "/admin/usermodify";
 	}
-	@PostMapping("/user_modify")
-	public String adminUser_modify(
+	@PostMapping("/usermodify")
+	public String adminUsermodify(
 			@ModelAttribute("adminModifyUser")UserInfo userInfo){
 		
 		System.out.println("C-admin회원수정");
 		adminService.updateaAdminUserInfo(userInfo);
 		
-		return"/admin/user_modifySuccess";
+		return"/admin/usermodifySuccess";
 	}
 }

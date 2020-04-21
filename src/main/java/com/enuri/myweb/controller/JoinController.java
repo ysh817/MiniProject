@@ -42,7 +42,6 @@ public class JoinController {
 	public String join(@Valid @ModelAttribute("joinform")UserInfo userInfo, BindingResult result, Model model) {	
 		//유효성체크
 		if(result.hasErrors()) {//true 면 오류있음. 다시 회원가입창으로
-			System.out.println("ㄻsdddddㄴㄹㄹ이: "+result);
 			return "/join";
 		}
 		

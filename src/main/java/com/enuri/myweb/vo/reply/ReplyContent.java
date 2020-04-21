@@ -1,11 +1,14 @@
 package com.enuri.myweb.vo.reply;
 
+import javax.validation.constraints.NotEmpty;
 
 public class ReplyContent {
 	private int cnt; //게시글 번호
 	private int rno; //댓글번호(순서, id) cnt-rno : 고유번호
 	private String user_name;
 	private String user_id;
+	
+	@NotEmpty(message="댓글 내용을 입력하세요")
 	private String content;
 	private String regdate;
 	private String up_regdate;

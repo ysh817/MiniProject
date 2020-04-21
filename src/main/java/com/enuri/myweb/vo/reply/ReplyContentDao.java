@@ -11,7 +11,7 @@ public class ReplyContentDao {
 	@Autowired SqlSession sqlSessionFactory;
 	
 	public List<ReplyContent> getAllReply(int cnt){
-		return sqlSessionFactory.selectList("ReplyContent.getAllReply");
+		return sqlSessionFactory.selectList("ReplyContent.getAllReply",cnt);
 	}
 	
 	public int getReplyCnt(int cnt) {

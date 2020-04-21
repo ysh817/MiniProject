@@ -1,11 +1,13 @@
 package com.enuri.myweb.controller;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,14 +37,19 @@ public class UserController {
 		System.out.println("이미 로그인함");	
 		return "/user/loginError";
 	}
-	@GetMapping("/modify_enter")
-	public String userModify_ent(){
-		return "/user/modify_enter";
-	}
-	@PostMapping("/modify_enter")
+	@GetMapping("/modifyenter")
 	public String userModify_ent(@ModelAttribute("modifyUser_ent")UserInfo userInfo){
+		return "/user/modifyenter";
+	}
+	@PostMapping("/modifyenter")
+	public String userModify_ent(@Valid @ModelAttribute("modifyUser_ent")UserInfo userInfo, BindingResult result){
 		//비밀번호 입력- 비밀번호 틀리면 정보수정페이지 접근불가
-		if(!loginsession.getUser_pw().equals(userInfo.getUser_pw())){
+		
+		/*if(userInfo.getUser_pw().contains("")) {
+			return "/error/errorBlank";
+		}
+		
+		else*/ if(!loginsession.getUser_pw().equals(userInfo.getUser_pw())){
 			return "/error/error_notEqual";
 		}
 		
