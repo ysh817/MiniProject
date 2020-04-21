@@ -3,12 +3,13 @@ package com.enuri.myweb.vo.reply;
 
 public class ReplyContent {
 	private int cnt; //게시글 번호
-	private int rno; //댓글번호(순서) cnt-rno
+	private int rno; //댓글번호(순서, id) cnt-rno : 고유번호
 	private String user_name;
 	private String user_id;
 	private String content;
 	private String regdate;
 	private String up_regdate;
+	private int up_no;
 	
 	
 	public int getCnt() {
@@ -54,6 +55,13 @@ public class ReplyContent {
 	public void setUp_regdate(String up_regdate) {
 		this.up_regdate = up_regdate;
 	}
+	public int getUp_no() {
+		return up_no;
+	}
+	public void setUp_no(int up_no) {
+		this.up_no = up_no;
+	}
+	
 	
 	
 }

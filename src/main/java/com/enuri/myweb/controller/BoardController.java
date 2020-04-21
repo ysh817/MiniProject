@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.enuri.myweb.service.BoardService;
 
@@ -22,6 +23,7 @@ import com.enuri.myweb.service.LoginService;
 import com.enuri.myweb.service.ReplyService;
 import com.enuri.myweb.vo.board.BoardContent;
 import com.enuri.myweb.vo.page.PageMaker;
+import com.enuri.myweb.vo.reply.ReplyContent;
 import com.enuri.myweb.vo.userinfo.UserInfo;
 
 
@@ -77,6 +79,14 @@ public class BoardController {
 		BoardContent readContent = boardService.readBoardContent(content_cnt);
 		boardService.updateHit(content_cnt);
 		model.addAttribute("read", readContent);
+		
+		//댓글
+		List<ReplyContent> replylist = replyService.replyAllList(content_cnt);	
+		model.addAttribute("replylist", replylist);
+		//model.addAttribute("replycnt", replyService.ReplyCnt(content_cnt));
+		
+		//댓글 insert +1하면 boardContent.recnt+1
+		model.addAttribute("newReply",new ReplyContent());
 
 		return "/board/read";
 	}
@@ -124,7 +134,8 @@ public class BoardController {
 	@GetMapping("/delete")
 	public String delete(@RequestParam("content_cnt")int content_cnt) {
 		
-		boardService.deleteBoardContent(content_cnt);	
+		boardService.deleteBoardContent(content_cnt);
+		replyService.deleteReplyBoad(content_cnt);
 		return "/board/delete";
 	}
 	

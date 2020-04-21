@@ -11,6 +11,7 @@
 		<result property="content" column="CONTENT" />
 		<result property="regdate" column="REGDATE" />
 		<result property="up_regdate" column="UP_REGDATE" />
+		<result property="up_no" column="UP_NO" />
 	</resultMap>
 	
 	<select id="getAllReply" parameterType="int" resultMap="ReplyContentMap">
@@ -27,9 +28,9 @@
 	
 	<insert id="insertReply" parameterType="ReplyContent">
 		INSERT INTO REPLY_CONTENT
-		( CNT, RNO, USER_NAME, USER_ID,CONTENT,REGDATE,UP_REGDATE )
+		( CNT, RNO, USER_NAME, USER_ID, CONTENT,REGDATE,UP_REGDATE,UP_NO )
 		VALUES
-		( #{cnt},#{rno},#{user_name},#{user_id},#{content},#{regdate},#{up_regdate})
+		( #{cnt},#{rno},#{user_name},#{user_id},#{content},#{regdate},#{up_regdate},#{up_no})
 	</insert>
 	
 	<update id="updateReply" parameterType="ReplyContent">
@@ -39,16 +40,26 @@
 		AND RNO=#{rno}		
 	</update>
 	
-	<delete id="deleteReply" parameterType="ReplyContent">
+	<delete id="deleteReply" parameterType="int">
 		DELETE FROM REPLY_CONTENT 
-		WHERE CNT=#{cnt}
-		AND RNO=#{rno}
+		WHERE RNO=#{rno}
 	</delete>
 	
 	<select id="getMaxReplyCnt"  parameterType="int" resultType="Integer">
 		SELECT IFNULL(MAX(RNO),0) AS RNO
 		FROM REPLY_CONTENT 
 		WHERE CNT=#{cnt}
+	</select>
+	
+	<delete id="deleteReplyOnBoad" parameterType="int">
+		DELETE FROM REPLY_CONTENT 
+		WHERE CNT=#{cnt}
+	</delete>
+	
+	<select id="readReply" parameterType="int" resultType="ReplyContent">
+		SELECT * 
+		FROM REPLY_CONTENT 
+		WHERE RNO=#{rno}
 	</select>
 	
 	

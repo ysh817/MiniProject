@@ -25,11 +25,17 @@ public class ReplyContentDao {
 	public void updateReply(ReplyContent replyContent) {
 		sqlSessionFactory.update("ReplyContent.updateReply", replyContent);
 	}
-	public void deleteReply(ReplyContent replyContent) {
-		sqlSessionFactory.delete("ReplyContent.deleteReply", replyContent);
+	public void deleteReply(int rno) {
+		sqlSessionFactory.delete("ReplyContent.deleteReply", rno);
 	}
 	public Integer getMaxReplyCnt(int cnt) {
 		return sqlSessionFactory.selectOne("ReplyContent.getMaxReplyCnt",cnt);
 	}
-
+	public void deleteReplyOnBoad(int cnt) {
+		sqlSessionFactory.delete("ReplyContent.deleteReplyOnBoad", cnt);
+	}
+	public ReplyContent readReply(int rno){
+		
+		return sqlSessionFactory.selectOne("ReplyContent.readReply", rno);
+	}
 }

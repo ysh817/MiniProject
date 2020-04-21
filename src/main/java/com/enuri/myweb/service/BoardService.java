@@ -96,6 +96,12 @@ public class BoardService {
 		PageMaker page = new PageMaker(contentCnt, currentPage, pageCnt, pageRange);
 		return page;
 	}
+	public void updateReplyCnt(int cnt) {
+		boardContentDao.updateReplyCnts(cnt);
+	}
+	public void updateReplyCntM(int cnt) {
+		boardContentDao.updateReplyCntM(cnt);
+	}
 
 
 	

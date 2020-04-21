@@ -124,7 +124,18 @@
 		SET HIT=HIT+1 
 		WHERE CNT=#{cnt}	
 	</update>
-
+	
+	<update id="updateReplyCnts" parameterType="int" >
+		UPDATE BOARD_CONTENT 
+		SET RECNT=RECNT+1 
+		WHERE CNT=#{cnt}	
+	</update>
+	<update id="updateReplyCntM" parameterType="int" >
+		UPDATE BOARD_CONTENT 
+		SET RECNT=RECNT-1 
+		WHERE CNT=#{cnt}	
+	</update>
+	
 
 </mapper>
 	

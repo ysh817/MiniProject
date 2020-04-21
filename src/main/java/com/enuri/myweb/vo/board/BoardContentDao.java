@@ -71,6 +71,12 @@ public class BoardContentDao {
 		//조회수 증가
 		sqlSessionFactory.update("BoardContent.updateHits", cnt);
 	}
+	public void updateReplyCnts(int cnt) {
+		sqlSessionFactory.update("BoardContent.updateReplyCnts", cnt);
+	}
+	public void updateReplyCntM(int cnt) {
+		sqlSessionFactory.update("BoardContent.updateReplyCntM", cnt);
+	}
 
 	
 

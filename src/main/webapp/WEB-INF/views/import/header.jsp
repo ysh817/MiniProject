@@ -41,7 +41,7 @@
 				<c:otherwise>
 					<c:if test="${loginsession.userlogin == true }">
 						<li class="nav-item">
-							<a href="${root }user/modify" class="nav-link">정보수정</a>
+							<a href="${root }user/modify_enter" class="nav-link">정보수정</a>
 						</li>
 						<li class="nav-item">
 							<a href="${root }user/logoutSuccess" class="nav-link">로그아웃</a>
